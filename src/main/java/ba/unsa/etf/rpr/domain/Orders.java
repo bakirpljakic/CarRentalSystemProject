@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Date;
 import java.util.Objects;
 
-public class Orders {
+public class Orders implements Idable{
     private int id;
     private Date dateproccessed;
     private Date rentstart;

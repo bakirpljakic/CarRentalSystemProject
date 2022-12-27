@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
-public class Cars {
+public class Cars implements Idable {
     private int id;
     private String make;
     private  String model;
