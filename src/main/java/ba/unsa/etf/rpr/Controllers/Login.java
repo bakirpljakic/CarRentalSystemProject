@@ -1,30 +1,30 @@
 package ba.unsa.etf.rpr.Controllers;
 
-import ba.unsa.etf.rpr.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.Objects;
+import java.util.List;
 
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class Controller {
-    public Controller() {
+public class Login {
+    public TextField KorisnickoimeID;
+    public PasswordField LozinkaID;
+
+    public Login() {
     }
 
     public Label welcomeText;
 
     @FXML
-    void initialize() {}
+    public void initialize() {}
 
 
     protected void onHelloButtonClick() {
@@ -33,14 +33,21 @@ public class Controller {
 
     public void buttonClick(javafx.event.ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/registracija.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/registration.fxml"));
        // Registracija r = fxmlLoader.getController();
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        //Parent root = fxmlLoader.load();
+        Registration r = new Registration();
+        fxmlLoader.setController(r);
+        Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         //stage.setTitle("");
         //stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+        stage.setOnHiding(x->{
+            List<String> lista = r.login();
+            KorisnickoimeID.setText(lista.get(0));
+            LozinkaID.setText(lista.get(1));
+        });
     }
 }
