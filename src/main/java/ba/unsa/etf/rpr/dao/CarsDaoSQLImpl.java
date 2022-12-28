@@ -29,9 +29,6 @@ public class CarsDaoSQLImpl implements CarsDao{
                 car.setMake(myRs.getString("Make"));
                 car.setModel(myRs.getString("Model"));
                 car.setYear(myRs.getInt("CarYear"));
-                car.setAirconditioner(myRs.getBoolean("AirConditioner"));
-                car.setNavigation(myRs.getBoolean("Navigation"));
-                car.setAbs(myRs.getBoolean("ABS"));
                 car.setPrice(myRs.getInt("Price"));
                 car.setAvailable(myRs.getBoolean("Available"));
                 myRs.close();
@@ -48,17 +45,13 @@ public class CarsDaoSQLImpl implements CarsDao{
 
     @Override
     public Cars add(Cars item) {
-        String insert =" INSERT INTO Cars (CarID, Make, Model, CarYear, Category, AirConditioner, Navigation, ABS, Price, Available) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String insert =" INSERT INTO Cars (CarID, Make, Model, CarYear, Available) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             ps.setInt( 1, item.getId());
             ps.setString(2, item.getMake());
             ps.setString(3, item.getModel());
             ps.setInt(4,item.getYear());
-            ps.setString(5, item.getCategory());
-            ps.setBoolean(6, item.isAirconditioner());
-            ps.setBoolean(7, item.isNavigation());
-            ps.setBoolean(8, item.isAbs());
             ps.setInt(9, item.getPrice());
             ps.setBoolean(10, item.isAvailable());
             ps.executeUpdate();
@@ -73,17 +66,13 @@ public class CarsDaoSQLImpl implements CarsDao{
 
     @Override
     public Cars update(Cars item) {
-        String update=" UPDATE Cars set CarID = ?, Make=?, Model=?, CarYear=?, Category=?, AirConditioner=?, Navigation=?, " +
-                "ABS=?, Price=?, Available=? WHERE CarID = ?";
+        String update=" UPDATE Cars set CarID = ?, Make=?, Model=?, CarYear=?," +
+                "Price=?, Available=? WHERE CarID = ?";
         try {
             PreparedStatement ps = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, item.getMake());
             ps.setString(2, item.getModel());
             ps.setInt(3, item.getYear());
-            ps.setString(4, item.getCategory());
-            ps.setBoolean(5, item.isAirconditioner());
-            ps.setBoolean(6, item.isNavigation());
-            ps.setBoolean(7, item.isAbs());
             ps.setInt(8, item.getPrice());
             ps.setBoolean(9, item.isAvailable());
             ps.executeUpdate();
@@ -119,9 +108,6 @@ public class CarsDaoSQLImpl implements CarsDao{
                 car.setMake(myRs.getString("Make"));
                 car.setModel(myRs.getString("Model"));
                 car.setYear(myRs.getInt("CarYear"));
-                car.setAirconditioner(myRs.getBoolean("AirConditioner"));
-                car.setNavigation(myRs.getBoolean("Navigation"));
-                car.setAbs(myRs.getBoolean("ABS"));
                 car.setPrice(myRs.getInt("Price"));
                 car.setAvailable(myRs.getBoolean("Available"));
                 cars.add(car);

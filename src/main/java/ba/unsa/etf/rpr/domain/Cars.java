@@ -7,10 +7,7 @@ public class Cars implements Idable {
     private String make;
     private  String model;
     private int year;
-    private String category;
-    private boolean airconditioner;
-    private boolean navigation;
-    private boolean abs;
+
     private int price;
     private boolean available;
 
@@ -47,37 +44,6 @@ public class Cars implements Idable {
         this.year = year;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public boolean isAirconditioner() {
-        return airconditioner;
-    }
-
-    public void setAirconditioner(boolean airconditioner) {
-        this.airconditioner = airconditioner;
-    }
-
-    public boolean isNavigation() {
-        return navigation;
-    }
-
-    public void setNavigation(boolean navigation) {
-        this.navigation = navigation;
-    }
-
-    public boolean isAbs() {
-        return abs;
-    }
-
-    public void setAbs(boolean abs) {
-        this.abs = abs;
-    }
 
     public int getPrice() {
         return price;
@@ -105,7 +71,7 @@ public class Cars implements Idable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, make, model, year, category, airconditioner, navigation, abs, price, available);
+        return Objects.hash(id, make, model, year, price, available);
     }
 
     @Override
@@ -115,10 +81,6 @@ public class Cars implements Idable {
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
                 ", year=" + year +
-                ", category='" + category + '\'' +
-                ", airconditioner=" + airconditioner +
-                ", navigation=" + navigation +
-                ", abs=" + abs +
                 ", price=" + price +
                 ", available=" + available +
                 '}';
