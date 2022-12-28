@@ -2,18 +2,26 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Customers;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class CustomersDaoSQLImpl implements CustomersDao{
     private Connection connection;
 
     public CustomersDaoSQLImpl(){
-        try{
-            this.connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_RPRbaza27", "freedb_bpljakic1", "2Xesc!cAcKJ%VPB");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try (InputStream input = new FileInputStream(".properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String password = prop.getProperty("db.password");
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (Exception io) {
+            io.printStackTrace();
         }
     }
     @Override
@@ -27,9 +35,9 @@ public class CustomersDaoSQLImpl implements CustomersDao{
                 Customers customer = new Customers();
                 customer.setId(myRs.getInt("CustomerID"));
                 customer.setFullname(myRs.getString("FullName"));
-                customer.setDrivinglicence(myRs.getInt("DrivLicenceNumber"));
+                customer.setDrivinglicence(myRs.getString("DrivLicenceNumber"));
                 customer.setAdress(myRs.getString("Adress"));
-                customer.setCountry(myRs.getString("Country"));
+                customer.setMail(myRs.getString("Mail"));
                 customer.setCity(myRs.getString("City"));
                 CarsDao carDao = new CarsDaoSQLImpl();
                 customer.setCar(carDao.getById(myRs.getInt("CarID")));
@@ -47,14 +55,14 @@ public class CustomersDaoSQLImpl implements CustomersDao{
 
     @Override
     public Customers add(Customers item) {
-        String insert =" INSERT INTO Customers (CustomerID, FullName, DrivLicenceNumber, Adress, Country, City, CarID) VALUES (?,?,?,?,?,?,?)";
+        String insert =" INSERT INTO Customers (CustomerID, FullName, DrivLicenceNumber, Adress, Mail, City, CarID) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             ps.setInt( 1, item.getId());
             ps.setString(2, item.getFullname());
-            ps.setInt(3,item.getDrivinglicence());
+            ps.setString(3,item.getDrivinglicence());
             ps.setString(4, item.getAdress());
-            ps.setString(5, item.getCountry());
+            ps.setString(5, item.getMail());
             ps.setString(6, item.getCity());
             ps.setInt(7, item.getCar().getId());
             ps.executeUpdate();
@@ -66,17 +74,38 @@ public class CustomersDaoSQLImpl implements CustomersDao{
         }
         return null;
     }
+    @Override
+    public Customers addCustomer(Customers item) {
+        String insert =" INSERT INTO Customers (CustomerID, FullName, DrivLicenceNumber, Adress, Mail, City) VALUES (?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt( 1, item.getId());
+            ps.setString(2, item.getFullname());
+            ps.setString(3,item.getDrivinglicence());
+            ps.setString(4, item.getAdress());
+            ps.setString(5, item.getMail());
+            ps.setString(6, item.getCity());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            return item;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     @Override
     public Customers update(Customers item) {
-        String update=" UPDATE Customers set CustomerID = ?, FullName=?, DrivLicenceNumber=?, Adress=?, Country=?, City=?, CarID=?";
+        String update=" UPDATE Customers set CustomerID = ?, FullName=?, DrivLicenceNumber=?, Adress=?, Mail=?, City=?, CarID=?";
         try {
             PreparedStatement ps = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, item.getId());
             ps.setString(2, item.getFullname());
-            ps.setInt(3, item.getDrivinglicence());
+            ps.setString(3, item.getDrivinglicence());
             ps.setString(4, item.getAdress());
-            ps.setString(5, item.getCountry());
+            ps.setString(5, item.getMail());
             ps.setString(6, item.getCity());
             CarsDao carDao = new CarsDaoSQLImpl();
             ps.setInt(7, item.getCar().getId());
@@ -111,9 +140,9 @@ public class CustomersDaoSQLImpl implements CustomersDao{
                 Customers customer = new Customers();
                 customer.setId(myRs.getInt("CustomerID"));
                 customer.setFullname(myRs.getString("FullName"));
-                customer.setDrivinglicence(myRs.getInt("DrivLicenceNumber"));
+                customer.setDrivinglicence(myRs.getString("DrivLicenceNumber"));
                 customer.setAdress(myRs.getString("Adress"));
-                customer.setCountry(myRs.getString("Country"));
+                customer.setMail(myRs.getString("Mail"));
                 customer.setCity(myRs.getString("City"));
                 CarsDao carDao = new CarsDaoSQLImpl();
                 customer.setCar(carDao.getById(myRs.getInt("CarID")));

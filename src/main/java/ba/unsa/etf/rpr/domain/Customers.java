@@ -5,12 +5,25 @@ import java.util.Objects;
 public class Customers implements Idable {
     private int id;
     private String fullname;
-    private int drivinglicence;
+    private String drivinglicence;
     private String adress;
-    private String country;
+    private String mail;
     private String city;
 
     private Cars car;
+
+    public Customers(int i, String ime, String vozacka, String adresa, String email, String grad) {
+        this.id = i;
+        this.fullname = ime;
+        this.drivinglicence = vozacka;
+        this.adress = adresa;
+        this.mail = email;
+        this.city= grad;
+    }
+
+    public Customers() {
+
+    }
 
 
     public int getId() {
@@ -29,11 +42,11 @@ public class Customers implements Idable {
         this.fullname = fullname;
     }
 
-    public int getDrivinglicence() {
+    public String getDrivinglicence() {
         return drivinglicence;
     }
 
-    public void setDrivinglicence(int drivinglicence) {
+    public void setDrivinglicence(String drivinglicence) {
         this.drivinglicence = drivinglicence;
     }
 
@@ -45,12 +58,12 @@ public class Customers implements Idable {
         this.adress = adress;
     }
 
-    public String getCountry() {
-        return country;
+    public String getMail() {
+        return mail;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getCity() {
@@ -71,7 +84,7 @@ public class Customers implements Idable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fullname, drivinglicence, adress, country, city);
+        return Objects.hash(id, fullname, drivinglicence, adress, mail, city);
     }
 
     public Cars getCar() {
@@ -89,7 +102,7 @@ public class Customers implements Idable {
                 ", fullname='" + fullname + '\'' +
                 ", drivinglicence=" + drivinglicence +
                 ", adress='" + adress + '\'' +
-                ", country='" + country + '\'' +
+                ", mail='" + mail + '\'' +
                 ", city='" + city + '\'' +
                 ", car=" + car +
                 '}';
