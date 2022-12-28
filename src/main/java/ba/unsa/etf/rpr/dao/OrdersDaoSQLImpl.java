@@ -2,18 +2,26 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Orders;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class OrdersDaoSQLImpl implements OrdersDao{
     private Connection connection;
 
     public OrdersDaoSQLImpl(){
-        try{
-            this.connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_RPRbaza27", "freedb_bpljakic1", "2Xesc!cAcKJ%VPB");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try (InputStream input = new FileInputStream(".properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String password = prop.getProperty("db.password");
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (Exception io) {
+            io.printStackTrace();
         }
     }
     @Override

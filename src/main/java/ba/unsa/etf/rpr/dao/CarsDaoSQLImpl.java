@@ -1,19 +1,28 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Cars;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class CarsDaoSQLImpl implements CarsDao{
 
     private Connection connection;
 
     public CarsDaoSQLImpl(){
-        try{
-            this.connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_RPRbaza27", "freedb_bpljakic1", "2Xesc!cAcKJ%VPB");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try (InputStream input = new FileInputStream(".properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+            String url = prop.getProperty("db.url");
+            String user = prop.getProperty("db.user");
+            String password = prop.getProperty("db.password");
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (Exception io) {
+            io.printStackTrace();
         }
     }
     @Override
@@ -45,7 +54,7 @@ public class CarsDaoSQLImpl implements CarsDao{
 
     @Override
     public Cars add(Cars item) {
-        String insert =" INSERT INTO Cars (CarID, Make, Model, CarYear, Available) VALUES (?,?,?,?,?)";
+        String insert =" INSERT INTO Cars (CarID, Make, Model, CarYear, Price, Available) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             ps.setInt( 1, item.getId());
