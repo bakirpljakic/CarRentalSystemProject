@@ -36,9 +36,7 @@ public class OrdersDaoSQLImpl implements OrdersDao{
                 order.setId(myRs.getInt("OrderID"));
                 order.setRentstart(myRs.getDate("RentStartDate"));
                 order.setRentend(myRs.getDate("RentEndDate"));
-                order.setTank(myRs.getInt("TankLevel"));
-                order.setMileagestart(myRs.getInt("MileageStart"));
-                order.setMileageend(myRs.getInt("MileageEnd"));
+                order.setTotalprice(myRs.getInt("TotalPrice"));
                 CarsDao carDao = new CarsDaoSQLImpl();
                 order.setCar(carDao.getById(myRs.getInt("CarID")));
                 CustomersDao customerDao = new CustomersDaoSQLImpl();
@@ -56,16 +54,13 @@ public class OrdersDaoSQLImpl implements OrdersDao{
 
     @Override
     public Orders add(Orders item) {
-        String insert =" INSERT INTO Orders (OrderID, DateProccessed, RentStartDate, RentEndDate, TankLevel, MileageStart, MileageEnd, CustomerID, CarID) VALUES (?,?,?,?,?,?,?,?,?)";
+        String insert =" INSERT INTO Orders (OrderID, RentStartDate, RentEndDate, TotalPrice, CustomerID, CarID) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             ps.setInt( 1, item.getId());
-            ps.setDate(2, item.getDateproccessed());
-            ps.setDate(3,item.getRentstart());
-            ps.setDate(4, item.getRentend());
-            ps.setInt(5, item.getTank());
-            ps.setInt(6, item.getMileagestart());
-            ps.setInt(7, item.getMileageend());
+            ps.setDate(2,item.getRentstart());
+            ps.setDate(3, item.getRentend());
+            ps.setInt(4, item.getTotalprice());
             CustomersDao customerDao = new CustomersDaoSQLImpl();
             ps.setInt(8, item.getCustomer().getId());
             CarsDao carDao = new CarsDaoSQLImpl();
@@ -82,20 +77,17 @@ public class OrdersDaoSQLImpl implements OrdersDao{
 
     @Override
     public Orders update(Orders item) {
-        String update=" UPDATE Orders set OrderID = ?, DateProccessed=?, RentStartDate=?, RentEndDate=?, TankLevel=?, MileageStart=?, MileageEnd=?, CustomerID=?, CarID=?";
+        String update=" UPDATE Orders set OrderID = ?, RentStartDate=?, RentEndDate=?, TotalPrice=?, CustomerID=?, CarID=?";
         try {
             PreparedStatement ps = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
             ps.setInt( 1, item.getId());
-            ps.setDate(2, item.getDateproccessed());
-            ps.setDate(3,item.getRentstart());
-            ps.setDate(4, item.getRentend());
-            ps.setInt(5, item.getTank());
-            ps.setInt(6, item.getMileagestart());
-            ps.setInt(7, item.getMileageend());
+            ps.setDate(2,item.getRentstart());
+            ps.setDate(3, item.getRentend());
+            ps.setInt(4, item.getTotalprice());
             CustomersDao customerDao = new CustomersDaoSQLImpl();
-            ps.setInt(8, item.getCustomer().getId());
+            ps.setInt(5, item.getCustomer().getId());
             CarsDao carDao = new CarsDaoSQLImpl();
-            ps.setInt(9, item.getCar().getId());
+            ps.setInt(6, item.getCar().getId());
             ps.executeUpdate();
             return item;
         }catch (SQLException e){
@@ -126,12 +118,9 @@ public class OrdersDaoSQLImpl implements OrdersDao{
             while(myRs.next()){
                 Orders order = new Orders();
                 order.setId(myRs.getInt("OrderID"));
-                order.setDateproccessed(myRs.getDate("DateProccessed"));
                 order.setRentstart(myRs.getDate("RentStartDate"));
                 order.setRentend(myRs.getDate("RentEndDate"));
-                order.setTank(myRs.getInt("TankLevel"));
-                order.setMileagestart(myRs.getInt("MileageStart"));
-                order.setMileageend(myRs.getInt("MileageEnd"));
+                order.setTotalprice(myRs.getInt("TotalPrice"));
                 CarsDao carDao = new CarsDaoSQLImpl();
                 order.setCar(carDao.getById(myRs.getInt("CarID")));
                 CustomersDao customerDao = new CustomersDaoSQLImpl();

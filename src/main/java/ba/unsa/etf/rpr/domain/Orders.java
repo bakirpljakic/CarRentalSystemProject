@@ -3,14 +3,13 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Date;
 import java.util.Objects;
 
-public class Orders implements Idable{
+public class Orders implements Idable {
     private int id;
-    private Date dateproccessed;
+
     private Date rentstart;
     private Date rentend;
-    private int tank;
-    private int mileagestart;
-    private int mileageend;
+
+    private int totalprice;
 
     private Cars car;
 
@@ -41,31 +40,6 @@ public class Orders implements Idable{
         this.rentend = rentend;
     }
 
-    public int getTank() {
-        return tank;
-    }
-
-    public void setTank(int tank) {
-        this.tank = tank;
-    }
-
-    public int getMileagestart() {
-        return mileagestart;
-    }
-
-    public void setMileagestart(int mileagestart) {
-        this.mileagestart = mileagestart;
-    }
-
-    public int getMileageend() {
-        return mileageend;
-    }
-
-    public void setMileageend(int mileageend) {
-        this.mileageend = mileageend;
-    }
-
-
 
 
     @Override
@@ -76,18 +50,7 @@ public class Orders implements Idable{
         return id == orders.id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, mileagestart);
-    }
 
-    public java.sql.Date getDateproccessed() {
-        return (java.sql.Date) dateproccessed;
-    }
-
-    public void setDateproccessed(Date dateproccessed) {
-        this.dateproccessed = dateproccessed;
-    }
 
     public Cars getCar() {
         return car;
@@ -105,16 +68,26 @@ public class Orders implements Idable{
         this.customer = customer;
     }
 
+    public int getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(int totalprice) {
+        this.totalprice = totalprice;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, rentstart, rentend, totalprice, car, customer);
+    }
+
     @Override
     public String toString() {
         return "Orders{" +
                 "id=" + id +
-                ", dateproccessed=" + dateproccessed +
                 ", rentstart=" + rentstart +
                 ", rentend=" + rentend +
-                ", tank=" + tank +
-                ", mileagestart=" + mileagestart +
-                ", mileageend=" + mileageend +
+                ", totalprice=" + totalprice +
                 ", car=" + car +
                 ", customer=" + customer +
                 '}';
