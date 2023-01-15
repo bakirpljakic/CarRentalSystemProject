@@ -1,9 +1,14 @@
 package ba.unsa.etf.rpr.Controllers;
 
+import ba.unsa.etf.rpr.dao.CustomersDao;
+import ba.unsa.etf.rpr.dao.CustomersDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.Customers;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -26,13 +31,14 @@ public class Login {
     @FXML
     public void initialize() {}
 
+    Stage stage = new Stage();
 
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
     public void buttonClick(javafx.event.ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/registration.fxml"));
        // Registracija r = fxmlLoader.getController();
         //Parent root = fxmlLoader.load();
@@ -49,5 +55,28 @@ public class Login {
             KorisnickoimeID.setText(lista.get(0));
             LozinkaID.setText(lista.get(1));
         });
+    }
+
+    Customers c = new Customers();
+    CustomersDao cDao = new CustomersDaoSQLImpl();
+    public void PrijavaButtonClick(ActionEvent actionEvent) throws IOException {
+      c =  cDao.getLoggedInCustomer(KorisnickoimeID.getText(), LozinkaID.getText());
+        if(c ==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Pogrešni podaci!");
+            alert.setContentText("Uneseni su pogrešni podaci.");
+            alert.showAndWait();
+        }
+        else{
+            if(c.isAdmin()){
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cars.fxml"));
+                Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+                Cars cars = fxmlLoader.getController();
+                stage.setTitle("Automobili");
+                stage.setScene(scene);
+                stage.show();
+            }
+        }
     }
 }
