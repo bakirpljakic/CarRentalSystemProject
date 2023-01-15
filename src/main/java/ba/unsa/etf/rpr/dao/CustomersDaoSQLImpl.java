@@ -159,4 +159,32 @@ public class CustomersDaoSQLImpl implements CustomersDao{
         }
         return customers;
     }
+
+    public Customers getLoggedInCustomer(String username, String password){
+        String query = "SELECT * FROM Customers WHERE FullName = ? AND Password = ?";
+        try{
+            PreparedStatement ps = this.connection.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet myRs = ps.executeQuery();
+        if (myRs.next()){
+            Customers customer = new Customers();
+            customer.setId(myRs.getInt("CustomerID"));
+            customer.setFullname(myRs.getString("FullName"));
+            customer.setDrivinglicence(myRs.getString("DrivLicenceNumber"));
+            customer.setAdress(myRs.getString("Adress"));
+            customer.setMail(myRs.getString("Mail"));
+            customer.setCity(myRs.getString("City"));
+            customer.setAdmin(myRs.getBoolean("Admin"));
+            customer.setPassword(myRs.getString("Password"));
+            CarsDao carDao = new CarsDaoSQLImpl();
+            customer.setCar(carDao.getById(myRs.getInt("CarID")));
+        return customer;
+        }
+        else return null;
+    } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+

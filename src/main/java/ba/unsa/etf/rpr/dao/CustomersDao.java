@@ -7,4 +7,7 @@ import java.util.List;
 public interface CustomersDao extends Dao<Customers>{
     public Customers addCustomer(Customers customer);
 
+    public Customers getLoggedInCustomer(String username, String password);
+
+
 }
