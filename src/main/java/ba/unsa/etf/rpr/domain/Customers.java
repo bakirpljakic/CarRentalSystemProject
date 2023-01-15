@@ -10,15 +10,21 @@ public class Customers implements Idable {
     private String mail;
     private String city;
 
+    private String password;
+
+    private boolean admin;
     private Cars car;
 
-    public Customers(int i, String ime, String vozacka, String adresa, String email, String grad) {
+    public Customers(int i, String ime, String vozacka, String adresa, String email, String grad, boolean admin, String password) {
         this.id = i;
         this.fullname = ime;
         this.drivinglicence = vozacka;
         this.adress = adresa;
         this.mail = email;
         this.city= grad;
+        this.admin = admin;
+        this.password = password;
+
     }
 
     public Customers() {
@@ -74,6 +80,12 @@ public class Customers implements Idable {
         this.city = city;
     }
 
+    public String getPassword() {return password;}
+
+    public void setPassword(String password){this.password = password;}
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,7 +96,7 @@ public class Customers implements Idable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fullname, drivinglicence, adress, mail, city);
+        return Objects.hash(id, fullname, drivinglicence, adress, mail, city, admin, password);
     }
 
     public Cars getCar() {
@@ -95,15 +107,25 @@ public class Customers implements Idable {
         this.car = car;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public String toString() {
         return "Customers{" +
                 "id=" + id +
                 ", fullname='" + fullname + '\'' +
-                ", drivinglicence=" + drivinglicence +
+                ", drivinglicence='" + drivinglicence + '\'' +
                 ", adress='" + adress + '\'' +
                 ", mail='" + mail + '\'' +
                 ", city='" + city + '\'' +
+                ", password='" + password + '\'' +
+                ", admin=" + admin +
                 ", car=" + car +
                 '}';
     }

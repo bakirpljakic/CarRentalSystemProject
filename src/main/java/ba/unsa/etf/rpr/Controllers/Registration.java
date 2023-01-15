@@ -68,7 +68,8 @@ public class Registration {
             String adresa = AdresaID.getText();
             String email = EmailID.getText();
             String grad = GradID.getText();
-            c = new Customers(0,ime, vozacka, adresa,email,grad);
+            String sifra = LozinkaID.getText();
+            c = new Customers(0,ime, vozacka, adresa,email,grad,false,sifra);
              cDao.addCustomer(c);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Status registracije:");

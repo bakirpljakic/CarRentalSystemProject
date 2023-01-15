@@ -76,7 +76,7 @@ public class CustomersDaoSQLImpl implements CustomersDao{
     }
     @Override
     public Customers addCustomer(Customers item) {
-        String insert =" INSERT INTO Customers (CustomerID, FullName, DrivLicenceNumber, Adress, Mail, City) VALUES (?,?,?,?,?,?)";
+        String insert =" INSERT INTO Customers (CustomerID, FullName, DrivLicenceNumber, Adress, Mail, City, Admin, Password) VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             ps.setInt( 1, item.getId());
@@ -85,6 +85,8 @@ public class CustomersDaoSQLImpl implements CustomersDao{
             ps.setString(4, item.getAdress());
             ps.setString(5, item.getMail());
             ps.setString(6, item.getCity());
+            ps.setBoolean(7, item.isAdmin());
+            ps.setString(8, item.getPassword());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
@@ -98,7 +100,7 @@ public class CustomersDaoSQLImpl implements CustomersDao{
 
     @Override
     public Customers update(Customers item) {
-        String update=" UPDATE Customers set CustomerID = ?, FullName=?, DrivLicenceNumber=?, Adress=?, Mail=?, City=?, CarID=?";
+        String update=" UPDATE Customers set CustomerID = ?, FullName=?, DrivLicenceNumber=?, Adress=?, Mail=?, City=?, CarID=?, Admin=?, Password=? ";
         try {
             PreparedStatement ps = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, item.getId());
@@ -107,6 +109,8 @@ public class CustomersDaoSQLImpl implements CustomersDao{
             ps.setString(4, item.getAdress());
             ps.setString(5, item.getMail());
             ps.setString(6, item.getCity());
+            ps.setBoolean(7, item.isAdmin());
+            ps.setString(8, item.getPassword());
             CarsDao carDao = new CarsDaoSQLImpl();
             ps.setInt(7, item.getCar().getId());
             ps.executeUpdate();
@@ -144,6 +148,8 @@ public class CustomersDaoSQLImpl implements CustomersDao{
                 customer.setAdress(myRs.getString("Adress"));
                 customer.setMail(myRs.getString("Mail"));
                 customer.setCity(myRs.getString("City"));
+                customer.setAdmin(myRs.getBoolean("Admin"));
+                customer.setPassword(myRs.getString("Password"));
                 CarsDao carDao = new CarsDaoSQLImpl();
                 customer.setCar(carDao.getById(myRs.getInt("CarID")));
             }
