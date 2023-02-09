@@ -63,19 +63,31 @@ public class Login {
       c =  cDao.getLoggedInCustomer(KorisnickoimeID.getText(), LozinkaID.getText());
         if(c ==null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
+            alert.setTitle("Neuspjesna prijava");
             alert.setHeaderText("Pogrešni podaci!");
             alert.setContentText("Uneseni su pogrešni podaci.");
             alert.showAndWait();
         }
         else{
             if(c.isAdmin()){
+                Stage stage = (Stage) KorisnickoimeID.getScene().getWindow();
+                stage.close();
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cars.fxml"));
                 Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
                 Cars cars = fxmlLoader.getController();
                 stage.setTitle("Automobili");
                 stage.setScene(scene);
                 stage.show();
+            } else{
+                Stage stage = (Stage) KorisnickoimeID.getScene().getWindow();
+                stage.close();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/order.fxml"));
+                Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+                Cars cars = fxmlLoader.getController();
+                stage.setTitle("Iznajmi");
+                stage.setScene(scene);
+                stage.show();
+
             }
         }
     }
