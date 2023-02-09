@@ -7,6 +7,7 @@ import ba.unsa.etf.rpr.domain.Cars;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
 public class CarsController {
@@ -19,6 +20,11 @@ public class CarsController {
     @FXML
     public ChoiceBox<String> DostupnoID;
     public TextField CIjenaID;
+    public TableColumn MarkaCol;
+    public TableColumn ModelCol;
+    public TableColumn GodisteCol;
+    public TableColumn DostupnoCol;
+    public TableColumn CijenaCol;
 
     Cars c = new Cars();
     CarsDao carsDao = new CarsDaoSQLImpl();
@@ -46,6 +52,8 @@ public class CarsController {
     }
 
     public void change(ActionEvent actionEvent) {
+
+
     }
 
     public void delete(ActionEvent actionEvent) {
