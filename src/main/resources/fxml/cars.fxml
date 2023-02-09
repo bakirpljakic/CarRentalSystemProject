@@ -136,7 +136,7 @@
       </ButtonBar>
       <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
          <columns>
-            <TableColumn prefWidth="115.0" text="Marka" />
+            <TableColumn fx:id="MarkaCol" prefWidth="115.0" text="Marka" />
             <TableColumn prefWidth="115.0" text="Model" />
             <TableColumn minWidth="6.199951171875" prefWidth="115.0" text="Godište" />
             <TableColumn minWidth="6.199951171875" prefWidth="115.0" text="Dostupno" />
