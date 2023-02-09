@@ -134,7 +134,7 @@
             <Insets right="20.0" />
          </GridPane.margin>
       </ButtonBar>
-      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+      <TableView fx:id="TabelaAuta" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
          <columns>
             <TableColumn fx:id="MarkaCol" prefWidth="115.0" text="Marka" />
             <TableColumn fx:id="ModelCol" prefWidth="115.0" text="Model" />
