@@ -140,7 +140,7 @@
             <TableColumn fx:id="ModelCol" prefWidth="115.0" text="Model" />
             <TableColumn fx:id="GodisteCol" minWidth="6.199951171875" prefWidth="115.0" text="Godište" />
             <TableColumn fx:id="DostupnoCol" minWidth="6.199951171875" prefWidth="115.0" text="Dostupno" />
-            <TableColumn minWidth="6.199951171875" prefWidth="115.0" text="Cijena" />
+            <TableColumn fx:id="CijenaCol" minWidth="6.199951171875" prefWidth="115.0" text="Cijena" />
          </columns>
       </TableView>
    </children>
