@@ -45,7 +45,7 @@
                         <Insets bottom="3.0" left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField prefHeight="24.0" prefWidth="122.0">
+                  <TextField fx:id="MarkaID" prefHeight="24.0" prefWidth="122.0">
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
@@ -62,7 +62,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField>
+                  <TextField fx:id="ModelID">
                      <VBox.margin>
                         <Insets left="10.0" top="4.0" />
                      </VBox.margin>
@@ -75,7 +75,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Godište:" />
-                  <TextField>
+                  <TextField fx:id="GodisteID">
                      <VBox.margin>
                         <Insets right="10.0" top="4.0" />
                      </VBox.margin>
@@ -88,7 +88,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Dostupno:" />
-                  <ChoiceBox prefWidth="150.0">
+                  <ChoiceBox fx:id="DostupnoID" prefWidth="150.0">
                      <VBox.margin>
                         <Insets right="5.0" top="4.0" />
                      </VBox.margin>
@@ -111,7 +111,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField>
+                  <TextField fx:id="CIjenaID">
                      <VBox.margin>
                         <Insets left="10.0" top="4.0" />
                      </VBox.margin>
@@ -125,9 +125,9 @@
       </HBox>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
          <buttons>
-            <Button mnemonicParsing="false" text="SAČUVAJ" />
-            <Button mnemonicParsing="false" text="IZMJENI" />
-            <Button minWidth="65.0" mnemonicParsing="false" text="IZBRIŠI" />
+            <Button mnemonicParsing="false" onAction="#save" text="SAČUVAJ" />
+            <Button mnemonicParsing="false" onAction="#change" text="IZMJENI" />
+            <Button minWidth="65.0" mnemonicParsing="false" onAction="#delete" text="IZBRIŠI" />
             <Button minWidth="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="316.0" text="RESET" />
          </buttons>
          <GridPane.margin>
