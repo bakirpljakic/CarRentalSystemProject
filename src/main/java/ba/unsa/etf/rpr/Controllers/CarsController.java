@@ -93,7 +93,20 @@ public class CarsController {
         CijenaID.setText(CijenaCol.getCellData(i). toString());
     }
     public void change(ActionEvent actionEvent) {
-
+        String marka = MarkaID.getText();
+        String model = ModelID.getText();
+        int godina = Integer.parseInt(GodisteID.getText());
+        int cijena = Integer.parseInt(CijenaID.getText());
+        boolean dostupno = false;
+        String choice = DostupnoID.getValue();
+        if(choice.equals("DA")){
+            dostupno = true;
+        }else {
+            dostupno = false;
+        }
+        c = new Cars(ID,marka,model, godina, cijena, dostupno);
+        carsDao.update(c);
+        AzurirajTabelu();
 
     }
 
