@@ -51,6 +51,21 @@ public class CarsController {
         }
         c = new Cars(0,marka,model, godina, cijena, dostupno);
         carsDao.add(c);
+        AzurirajTabelu();
+    }
+    public void AzurirajTabelu(){
+        IDCol.setCellValueFactory(new PropertyValueFactory<Cars,Integer>("id"));
+        MarkaCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Make"));
+        ModelCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Model"));
+        GodisteCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("CarYear"));
+        DostupnoCol.setCellValueFactory(new PropertyValueFactory<Cars, Boolean>("Available"));
+        CijenaCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("Price"));
+        List<Cars> auta = carsDao.getAll();
+        ObservableList<Cars> a = FXCollections.observableArrayList(auta);
+        TabelaAuta.setItems(a);
+        TabelaAuta.refresh();
+    }
+
 
 
     }
