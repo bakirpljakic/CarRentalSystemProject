@@ -77,6 +77,21 @@ public class CarsController {
 
     }
 
+
+
+    public void selectedCar(javafx.scene.input.MouseEvent mouseEvent) {
+        int i = TabelaAuta.getSelectionModel().getSelectedIndex();
+        ID = Integer.valueOf(IDCol.getCellData(i).toString());
+        MarkaID.setText(MarkaCol.getCellData(i).toString());
+        ModelID.setText(ModelCol.getCellData(i).toString());
+        GodisteID.setText(GodisteCol.getCellData(i).toString());
+        if(DostupnoCol.getCellData(i).toString().equals("true")){
+            DostupnoID.setValue("DA");
+        }else{
+            DostupnoID.setValue("NE");
+        }
+        CijenaID.setText(CijenaCol.getCellData(i). toString());
+    }
     public void change(ActionEvent actionEvent) {
 
 
