@@ -11,13 +11,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Registration {
+public class RegistrationController {
     public TextField KorisnikID;
     public TextField EmailID;
     public PasswordField LozinkaID;
@@ -29,7 +26,7 @@ public class Registration {
     public Button closeButton;
     public Button registrationID;
 
-    public Registration() {
+    public RegistrationController() {
     }
 
     @FXML
@@ -40,15 +37,6 @@ public class Registration {
         uspjesno = false;
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
-    }
-    Connection connection;
-
-    {
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_RPRbaza27", "freedb_bpljakic1", "2Xesc!cAcKJ%VPB");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
     Customers c = new Customers();
     CustomersDao cDao = new CustomersDaoSQLImpl();
