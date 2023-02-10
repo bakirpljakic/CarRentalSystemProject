@@ -19,11 +19,11 @@ import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class Login {
+public class LoginController {
     public TextField KorisnickoimeID;
     public PasswordField LozinkaID;
 
-    public Login() {
+    public LoginController() {
     }
 
     public Label welcomeText;
@@ -33,16 +33,14 @@ public class Login {
 
     Stage stage = new Stage();
 
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
+
 
     public void buttonClick(javafx.event.ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/registration.fxml"));
        // Registracija r = fxmlLoader.getController();
         //Parent root = fxmlLoader.load();
-        Registration r = new Registration();
+        RegistrationController r = new RegistrationController();
         fxmlLoader.setController(r);
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         //stage.setTitle("");
@@ -74,7 +72,7 @@ public class Login {
                 stage.close();
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cars.fxml"));
                 Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-                Cars cars = fxmlLoader.getController();
+                CarsController carsController = fxmlLoader.getController();
                 stage.setTitle("Automobili");
                 stage.setScene(scene);
                 stage.show();
@@ -83,7 +81,7 @@ public class Login {
                 stage.close();
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/order.fxml"));
                 Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-                Cars cars = fxmlLoader.getController();
+                OrderController ordersController = fxmlLoader.getController();
                 stage.setTitle("Iznajmi");
                 stage.setScene(scene);
                 stage.show();
