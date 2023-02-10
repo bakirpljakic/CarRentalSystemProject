@@ -128,4 +128,28 @@ public class CarsDaoSQLImpl implements CarsDao{
         }
         return cars;
     }
+
+    @Override
+    public List<Cars> getAllAvailable() {
+        String query = "SELECT * FROM Cars WHERE Available = 1";
+        List<Cars> cars = new ArrayList<Cars>();
+        try{
+            PreparedStatement ps = this.connection.prepareStatement(query);
+            ResultSet myRs = ps.executeQuery();
+            while(myRs.next()){
+                Cars car = new Cars();
+                car.setId(myRs.getInt("id"));
+                car.setMake(myRs.getString("Make"));
+                car.setModel(myRs.getString("Model"));
+                car.setCarYear(myRs.getInt("CarYear"));
+                car.setPrice(myRs.getInt("Price"));
+                car.setAvailable(myRs.getBoolean("Available"));
+                cars.add(car);
+            }
+            myRs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return cars;
+    }
 }
