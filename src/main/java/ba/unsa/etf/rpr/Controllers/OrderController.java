@@ -8,11 +8,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class OrderController {
     public TableColumn MarkaIDCol;
@@ -26,8 +33,14 @@ public class OrderController {
         prikaziTabelu();
 
     }
-
-    public void IznajmiButton(ActionEvent actionEvent) {
+    Stage stage = new Stage();
+    public void IznajmiButton(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/completeOrder.fxml"));
+        Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        CompleteOrderController completeOrderController = fxmlLoader.getController();
+        stage.setTitle("Automobili");
+        stage.setScene(scene);
+        stage.show();
 
 
     }
