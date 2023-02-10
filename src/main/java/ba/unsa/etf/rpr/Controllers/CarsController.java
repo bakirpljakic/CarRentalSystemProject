@@ -35,6 +35,8 @@ public class CarsController {
 
     @FXML
     public void initialize() {
+        AzurirajTabelu();
+
     }
 
     public void save(ActionEvent actionEvent) {
