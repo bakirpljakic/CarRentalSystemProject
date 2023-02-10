@@ -70,6 +70,11 @@ public class CarsController {
 
 
 
+    public void delete(ActionEvent actionEvent) {
+
+        carsDao.delete(ID);
+        AzurirajTabelu();
+
     }
 
     public void change(ActionEvent actionEvent) {
