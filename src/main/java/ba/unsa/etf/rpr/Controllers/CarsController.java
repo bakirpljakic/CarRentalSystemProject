@@ -19,12 +19,16 @@ public class CarsController {
     public TextField GodisteID;
     @FXML
     public ChoiceBox<String> DostupnoID;
-    public TextField CIjenaID;
+    public TextField CijenaID;
     public TableColumn MarkaCol;
     public TableColumn ModelCol;
     public TableColumn GodisteCol;
     public TableColumn DostupnoCol;
     public TableColumn CijenaCol;
+    public TableView<Cars> TabelaAuta;
+    public TableColumn IDCol;
+    public int ID;
+
 
     Cars c = new Cars();
     CarsDao carsDao = new CarsDaoSQLImpl();
