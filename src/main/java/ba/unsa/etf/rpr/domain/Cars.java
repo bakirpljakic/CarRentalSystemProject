@@ -6,7 +6,7 @@ public class Cars implements Idable {
     private int id;
     private String make;
     private  String model;
-    private int year;
+    private int CarYear;
 
     private int price;
     private boolean available;
@@ -17,7 +17,7 @@ public class Cars implements Idable {
         this.id = id;
         this.make = make;
         this.model = model;
-        this.year = year;
+        this.CarYear = year;
         this.price = price;
         this.available = available;
     }
@@ -49,12 +49,12 @@ public class Cars implements Idable {
         this.model = model;
     }
 
-    public int getYear() {
-        return year;
+    public int getCarYear() {
+        return CarYear;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setCarYear(int year) {
+        this.CarYear = year;
     }
 
 
@@ -84,7 +84,7 @@ public class Cars implements Idable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, make, model, year, price, available);
+        return Objects.hash(id, make, model, CarYear, price, available);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class Cars implements Idable {
                 "id=" + id +
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
-                ", year=" + year +
+                ", year=" + CarYear +
                 ", price=" + price +
                 ", available=" + available +
                 '}';
