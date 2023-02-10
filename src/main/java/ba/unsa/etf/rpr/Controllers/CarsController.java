@@ -110,6 +110,11 @@ public class CarsController {
 
     }
 
-    public void delete(ActionEvent actionEvent) {
+    public void reset(ActionEvent actionEvent) {
+        MarkaID.setText(null);
+        ModelID.setText(null);
+        GodisteID.setText(null);
+        DostupnoID.setValue(null);
+        CijenaID.setText(null);
     }
 }
