@@ -29,7 +29,15 @@ public class OrderController {
     Orders o = new Orders();
     CarsDao carsDao = new CarsDaoSQLImpl();
     public void PrikaziTabelu(){
-
+        MarkaIDCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Make"));
+        ModelIDCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Model"));
+        GodisteIDCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("CarYear"));
+        //DostupnoCol.setCellValueFactory(new PropertyValueFactory<Cars, Boolean>("Available"));
+        CijenaIDCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("Price"));
+        List<Cars> auta = carsDao.getAll();
+        ObservableList<Cars> a = FXCollections.observableArrayList(auta);
+        TabelaDostupnihAuta.setItems(a);
+        TabelaDostupnihAuta.refresh();
 
     }
 }
