@@ -27,17 +27,17 @@ public class CarsDaoSQLImpl implements CarsDao{
     }
     @Override
     public Cars getById(int id) {
-        String query = "SELECT * FROM Cars WHERE CarID=?";
+        String query = "SELECT * FROM Cars WHERE id=?";
         try{
             PreparedStatement ps = this.connection.prepareStatement(query);
             ps.setInt(1,id);
             ResultSet myRs = ps.executeQuery();
             if(myRs.next()){
                 Cars car = new Cars();
-                car.setId(myRs.getInt("CarID"));
+                car.setId(myRs.getInt("id"));
                 car.setMake(myRs.getString("Make"));
                 car.setModel(myRs.getString("Model"));
-                car.setYear(myRs.getInt("CarYear"));
+                car.setCarYear(myRs.getInt("CarYear"));
                 car.setPrice(myRs.getInt("Price"));
                 car.setAvailable(myRs.getBoolean("Available"));
                 myRs.close();
@@ -54,15 +54,15 @@ public class CarsDaoSQLImpl implements CarsDao{
 
     @Override
     public Cars add(Cars item) {
-        String insert =" INSERT INTO Cars (CarID, Make, Model, CarYear, Price, Available) VALUES (?,?,?,?,?)";
+        String insert =" INSERT INTO Cars (id, Make, Model, CarYear, Price, Available) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             ps.setInt( 1, item.getId());
             ps.setString(2, item.getMake());
             ps.setString(3, item.getModel());
-            ps.setInt(4,item.getYear());
-            ps.setInt(9, item.getPrice());
-            ps.setBoolean(10, item.isAvailable());
+            ps.setInt(4,item.getCarYear());
+            ps.setInt(5, item.getPrice());
+            ps.setBoolean(6, item.isAvailable());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
@@ -75,15 +75,16 @@ public class CarsDaoSQLImpl implements CarsDao{
 
     @Override
     public Cars update(Cars item) {
-        String update=" UPDATE Cars set CarID = ?, Make=?, Model=?, CarYear=?," +
-                "Price=?, Available=? WHERE CarID = ?";
+        String update=" UPDATE Cars set Make=?, Model=?, CarYear=?," +
+                "Price=?, Available=? WHERE id=?";
         try {
             PreparedStatement ps = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, item.getMake());
             ps.setString(2, item.getModel());
-            ps.setInt(3, item.getYear());
-            ps.setInt(8, item.getPrice());
-            ps.setBoolean(9, item.isAvailable());
+            ps.setInt(3, item.getCarYear());
+            ps.setInt(4, item.getPrice());
+            ps.setBoolean(5, item.isAvailable());
+            ps.setInt(6, item.getId());
             ps.executeUpdate();
             return item;
         }catch (SQLException e){
@@ -94,7 +95,7 @@ public class CarsDaoSQLImpl implements CarsDao{
 
     @Override
     public void delete(int id) {
-        String delete = "DELETE FROM Cars WHERE CarID = ?";
+        String delete = "DELETE FROM Cars WHERE id = ?";
         try {
             PreparedStatement ps = this.connection.prepareStatement(delete);
             ps.setObject(1,id);
@@ -113,10 +114,10 @@ public class CarsDaoSQLImpl implements CarsDao{
             ResultSet myRs = ps.executeQuery();
             while(myRs.next()){
                 Cars car = new Cars();
-                car.setId(myRs.getInt("CarID"));
+                car.setId(myRs.getInt("id"));
                 car.setMake(myRs.getString("Make"));
                 car.setModel(myRs.getString("Model"));
-                car.setYear(myRs.getInt("CarYear"));
+                car.setCarYear(myRs.getInt("CarYear"));
                 car.setPrice(myRs.getInt("Price"));
                 car.setAvailable(myRs.getBoolean("Available"));
                 cars.add(car);
