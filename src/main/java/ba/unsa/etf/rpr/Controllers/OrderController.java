@@ -4,10 +4,15 @@ import ba.unsa.etf.rpr.dao.CarsDao;
 import ba.unsa.etf.rpr.dao.CarsDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Cars;
 import ba.unsa.etf.rpr.domain.Orders;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.List;
 
 public class OrderController {
     public TableColumn MarkaIDCol;
@@ -18,7 +23,7 @@ public class OrderController {
 
     @FXML
     public void initialize() {
-        PrikaziTabelu();
+        prikaziTabelu();
 
     }
 
@@ -28,13 +33,12 @@ public class OrderController {
     }
     Orders o = new Orders();
     CarsDao carsDao = new CarsDaoSQLImpl();
-    public void PrikaziTabelu(){
+    public void prikaziTabelu(){
         MarkaIDCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Make"));
         ModelIDCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Model"));
         GodisteIDCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("CarYear"));
-        //DostupnoCol.setCellValueFactory(new PropertyValueFactory<Cars, Boolean>("Available"));
         CijenaIDCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("Price"));
-        List<Cars> auta = carsDao.getAll();
+        List<Cars> auta = carsDao.getAllAvailable();
         ObservableList<Cars> a = FXCollections.observableArrayList(auta);
         TabelaDostupnihAuta.setItems(a);
         TabelaDostupnihAuta.refresh();
