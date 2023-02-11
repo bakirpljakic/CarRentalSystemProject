@@ -27,16 +27,77 @@ public class CustomersDaoSQLImpl extends AbstractDao<Customers> implements Custo
 
     private Connection connection;
 
-    public CustomersDaoSQLImpl(){
-        try (InputStream input = new FileInputStream(".properties")) {
-            Properties prop = new Properties();
-            prop.load(input);
-            String url = prop.getProperty("db.url");
-            String user = prop.getProperty("db.user");
-            String password = prop.getProperty("db.password");
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (Exception io) {
-            io.printStackTrace();
+    @Override
+    public Customers row2object(ResultSet rs) throws CarsException {
+        try {
+            Customers customer = new Customers();
+            customer.setId(rs.getInt("CustomerID"));
+            customer.setFullname(rs.getString("FullName"));
+            customer.setDrivinglicence(rs.getString("DrivLicenceNumber"));
+            customer.setAdress(rs.getString("Adress"));
+            customer.setMail(rs.getString("Mail"));
+            customer.setCity(rs.getString("City"));
+            customer.setAdmin(rs.getBoolean("Admin"));
+            customer.setPassword(rs.getString("Password"));
+            CarsDao carDao = new CarsDaoSQLImpl();
+            customer.setCar(carDao.getById(rs.getInt("CarID")));
+            rs.close();
+            return customer;
+        } catch (Exception e) {
+            throw new CarsException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Map<String, Object> object2row(Customers object) {
+        Map<String, Object> item = new TreeMap<>();
+        item.put("CustomerID", object.getId());
+        item.put("FullName", object.getFullname());
+        item.put("DrivLicenceNumber", object.getDrivinglicence());
+        item.put("Adress", object.getAdress());
+        item.put("Mail", object.getMail());
+        item.put("City", object.getCity());
+        item.put("Admin", object.isAdmin());
+        item.put("Password", object.getPassword());
+        return item;
+    }
+
+
+
+
+    /* public int getLoggedInCustomer(String username, String password) throws CarsException {
+            try {
+                List<Customers> l = executeQuery("SELECT * FROM Customers WHERE FullName = ? AND Password = ?", new Object[]{username, password});
+                if (l.isEmpty()) return 0;
+                return l.get(0).getId();
+            } catch (CarsException e) {
+                throw new CarsException(e.getMessage(), e);
+            }
+        }
+    */
+   public Customers getLoggedInCustomer(String username, String password) throws CarsException {
+    String query = "SELECT * FROM Customers WHERE FullName = ? AND Password = ?";
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet myRs = ps.executeQuery();
+            if (myRs.next()) {
+                Customers customer = new Customers();
+                customer.setId(myRs.getInt("CustomerID"));
+                customer.setFullname(myRs.getString("FullName"));
+                customer.setDrivinglicence(myRs.getString("DrivLicenceNumber"));
+                customer.setAdress(myRs.getString("Adress"));
+                customer.setMail(myRs.getString("Mail"));
+                customer.setCity(myRs.getString("City"));
+                customer.setAdmin(myRs.getBoolean("Admin"));
+                customer.setPassword(myRs.getString("Password"));
+                CarsDao carDao = new CarsDaoSQLImpl();
+                customer.setCar(carDao.getById(myRs.getInt("CarID")));
+                return customer;
+            } else return null;
+        } catch (SQLException | CarsException e) {
+            throw new RuntimeException(e);
         }
     }
     @Override
