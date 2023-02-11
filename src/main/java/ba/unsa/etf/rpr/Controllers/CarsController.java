@@ -1,14 +1,17 @@
 package ba.unsa.etf.rpr.Controllers;
 
 
-import ba.unsa.etf.rpr.dao.CarsDao;
-import ba.unsa.etf.rpr.dao.CarsDaoSQLImpl;
+import ba.unsa.etf.rpr.business.CarsManager;
 import ba.unsa.etf.rpr.domain.Cars;
+import ba.unsa.etf.rpr.exceptions.CarsException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
@@ -34,19 +37,20 @@ public class CarsController {
 
 
     Cars c = new Cars();
-    CarsDao carsDao = new CarsDaoSQLImpl();
+
+    private CarsManager carsManager = new CarsManager();
 
     @FXML
-    public void initialize() {
+    public void initialize() throws CarsException {
         AzurirajTabelu();
 
     }
 
-    public void save(ActionEvent actionEvent) {
+    public void save(ActionEvent actionEvent) throws CarsException {
         String marka = MarkaID.getText();
         String model = ModelID.getText();
         int godina = Integer.parseInt(GodisteID.getText());
-        int cijena = Integer.parseInt(CIjenaID.getText());
+        int cijena = Integer.parseInt(CijenaID.getText());
         boolean dostupno;
         String choice = DostupnoID.getValue();
         if(choice.equals("DA")){
@@ -73,11 +77,9 @@ public class CarsController {
 
 
 
-    public void delete(ActionEvent actionEvent) {
-
-        carsDao.delete(ID);
+    public void delete(ActionEvent actionEvent) throws CarsException {
+        carsManager.delete(ID);
         AzurirajTabelu();
-
     }
 
 
@@ -95,7 +97,7 @@ public class CarsController {
         }
         CijenaID.setText(CijenaCol.getCellData(i). toString());
     }
-    public void change(ActionEvent actionEvent) {
+    public void change(ActionEvent actionEvent) throws CarsException {
         String marka = MarkaID.getText();
         String model = ModelID.getText();
         int godina = Integer.parseInt(GodisteID.getText());
@@ -108,7 +110,7 @@ public class CarsController {
             dostupno = false;
         }
         c = new Cars(ID,marka,model, godina, cijena, dostupno);
-        carsDao.update(c);
+        carsManager.update(c);
         AzurirajTabelu();
 
     }
