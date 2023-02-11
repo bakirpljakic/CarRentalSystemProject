@@ -41,6 +41,10 @@ public class CarsManager {
         return DaoFactory.carsDao().getById(id);
     }
 
+    public Integer getID(String marka, String model, Integer godiste, Integer cijena, boolean b) throws CarsException {
+        return DaoFactory.carsDao().getID(marka, model, godiste, cijena, b);
+    }
+
   /*  public Integer getID(String marka, String model, Integer godiste, Integer cijena, boolean b) {
 
     }*/
