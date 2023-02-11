@@ -1,19 +1,89 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Orders;
+import ba.unsa.etf.rpr.exceptions.CarsException;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class OrdersDaoSQLImpl implements OrdersDao{
+public class OrdersDaoSQLImpl extends AbstractDao<Orders> implements OrdersDao{
     private Connection connection;
+    private static OrdersDaoSQLImpl instance = null;
 
+    public OrdersDaoSQLImpl() {
+        super("Orders");
+    }
+
+    public static OrdersDaoSQLImpl getInstance() {
+        if (instance == null)
+            instance = new OrdersDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance() {
+        if (instance != null)
+            instance = null;
+    }
+
+    @Override
+    public Orders row2object(ResultSet rs) throws CarsException {
+        try {
+            Orders order = new Orders();
+            order.setId(rs.getInt("OrderID"));
+            order.setRentstart(rs.getDate("RentStartDate"));
+            order.setRentend(rs.getDate("RentEndDate"));
+            order.setTotalprice(rs.getInt("TotalPrice"));
+            CarsDao carDao = new CarsDaoSQLImpl();
+            order.setCar(carDao.getById(rs.getInt("CarID")));
+            CustomersDao customerDao = new CustomersDaoSQLImpl();
+            order.setCustomer(customerDao.getById(rs.getInt("CustomerID")));
+            rs.close();
+            return order;
+        } catch (Exception e) {
+            throw new CarsException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Map<String, Object> object2row(Orders object) {
+        Map<String, Object> item = new TreeMap<>();
+        item.put("OrderID", object.getId());
+        item.put("RentStartDate", object.getRentstart());
+        item.put("RentEndDate", object.getRentend());
+        item.put("TotalPrice", object.getTotalprice());
+        item.put("CarID", object.getCar().getId());
+        item.put("CustomerID", object.getCustomer().getId());
+        return item;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     public OrdersDaoSQLImpl(){
-        try (InputStream input = new FileInputStream(".properties")) {
+        try (InputStream input = new FileInputStream("db.properties")) {
             Properties prop = new Properties();
             prop.load(input);
             String url = prop.getProperty("db.url");
@@ -30,18 +100,18 @@ public class OrdersDaoSQLImpl implements OrdersDao{
         try {
             PreparedStatement ps = this.connection.prepareStatement(query);
             ps.setInt(1, id);
-            ResultSet myRs = ps.executeQuery();
-            if (myRs.next()) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
                 Orders order = new Orders();
-                order.setId(myRs.getInt("OrderID"));
-                order.setRentstart(myRs.getDate("RentStartDate"));
-                order.setRentend(myRs.getDate("RentEndDate"));
-                order.setTotalprice(myRs.getInt("TotalPrice"));
+                order.setId(rs.getInt("OrderID"));
+                order.setRentstart(rs.getDate("RentStartDate"));
+                order.setRentend(rs.getDate("RentEndDate"));
+                order.setTotalprice(rs.getInt("TotalPrice"));
                 CarsDao carDao = new CarsDaoSQLImpl();
-                order.setCar(carDao.getById(myRs.getInt("CarID")));
+                order.setCar(carDao.getById(rs.getInt("CarID")));
                 CustomersDao customerDao = new CustomersDaoSQLImpl();
-                order.setCustomer(customerDao.getById(myRs.getInt("CustomerID")));
-                myRs.close();
+                order.setCustomer(customerDao.getById(rs.getInt("CustomerID")));
+                rs.close();
                 return order;
             } else {
                 return null;
@@ -114,22 +184,22 @@ public class OrdersDaoSQLImpl implements OrdersDao{
         List<Orders> orders = new ArrayList<Orders>();
         try{
             PreparedStatement ps = this.connection.prepareStatement(query);
-            ResultSet myRs = ps.executeQuery();
-            while(myRs.next()){
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
                 Orders order = new Orders();
-                order.setId(myRs.getInt("OrderID"));
-                order.setRentstart(myRs.getDate("RentStartDate"));
-                order.setRentend(myRs.getDate("RentEndDate"));
-                order.setTotalprice(myRs.getInt("TotalPrice"));
+                order.setId(rs.getInt("OrderID"));
+                order.setRentstart(rs.getDate("RentStartDate"));
+                order.setRentend(rs.getDate("RentEndDate"));
+                order.setTotalprice(rs.getInt("TotalPrice"));
                 CarsDao carDao = new CarsDaoSQLImpl();
-                order.setCar(carDao.getById(myRs.getInt("CarID")));
+                order.setCar(carDao.getById(rs.getInt("CarID")));
                 CustomersDao customerDao = new CustomersDaoSQLImpl();
-                order.setCustomer(customerDao.getById(myRs.getInt("CustomerID")));
+                order.setCustomer(customerDao.getById(rs.getInt("CustomerID")));
             }
-            myRs.close();
+            rs.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
         return orders;
-    }
+    }*/
 }
