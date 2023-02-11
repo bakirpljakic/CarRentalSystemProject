@@ -1,8 +1,8 @@
 package ba.unsa.etf.rpr.Controllers;
 
-import ba.unsa.etf.rpr.dao.CustomersDao;
-import ba.unsa.etf.rpr.dao.CustomersDaoSQLImpl;
+import ba.unsa.etf.rpr.business.CustomersManager;
 import ba.unsa.etf.rpr.domain.Customers;
+import ba.unsa.etf.rpr.exceptions.CarsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +32,7 @@ public class LoginController {
     public void initialize() {}
 
     Stage stage = new Stage();
+    private CustomersManager cmanager = new CustomersManager();
 
 
 
@@ -56,10 +57,12 @@ public class LoginController {
     }
 
     Customers c = new Customers();
-    CustomersDao cDao = new CustomersDaoSQLImpl();
-    public void PrijavaButtonClick(ActionEvent actionEvent) throws IOException {
-      c =  cDao.getLoggedInCustomer(KorisnickoimeID.getText(), LozinkaID.getText());
-        if(c ==null){
+
+    public void PrijavaButtonClick(ActionEvent actionEvent) throws IOException, CarsException {
+       // c = (Customers) cmanager.getAll();
+       c = cmanager.getLoggedInCustomer(KorisnickoimeID.getText(), LozinkaID.getText());
+
+        if(c == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Neuspjesna prijava");
             alert.setHeaderText("Pogrešni podaci!");
