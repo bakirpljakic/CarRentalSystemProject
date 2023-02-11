@@ -1,15 +1,30 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Customers;
+import ba.unsa.etf.rpr.exceptions.CarsException;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class CustomersDaoSQLImpl implements CustomersDao{
+public class CustomersDaoSQLImpl extends AbstractDao<Customers> implements CustomersDao {
+    private static CustomersDaoSQLImpl instance = null;
+
+    public CustomersDaoSQLImpl() {
+        super("Customers");
+    }
+
+    public static CustomersDaoSQLImpl getInstance() {
+        if (instance == null)
+            instance = new CustomersDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance() {
+        if (instance != null)
+            instance = null;
+    }
+
     private Connection connection;
 
     public CustomersDaoSQLImpl(){
