@@ -1,8 +1,8 @@
 package ba.unsa.etf.rpr.Controllers;
 
-import ba.unsa.etf.rpr.dao.CustomersDao;
-import ba.unsa.etf.rpr.dao.CustomersDaoSQLImpl;
+import ba.unsa.etf.rpr.business.CustomersManager;
 import ba.unsa.etf.rpr.domain.Customers;
+import ba.unsa.etf.rpr.exceptions.CarsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -39,9 +39,11 @@ public class RegistrationController {
         stage.close();
     }
     Customers c = new Customers();
-    CustomersDao cDao = new CustomersDaoSQLImpl();
+    private CustomersManager cManager = new CustomersManager();
+
+    //CustomersDao cDao = new CustomersDaoSQLImpl();
     boolean uspjesno = true;
-    public void registrationButton(ActionEvent actionEvent) {
+    public void registrationButton(ActionEvent actionEvent) throws CarsException {
 
         if (KorisnikID.getText().isEmpty() || EmailID.getText().isEmpty() || LozinkaID.getText().isEmpty() || GradID.getText().isEmpty() || AdresaID.getText().isEmpty() || BrVozackeID.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -58,14 +60,13 @@ public class RegistrationController {
             String grad = GradID.getText();
             String sifra = LozinkaID.getText();
             c = new Customers(0,ime, vozacka, adresa,email,grad,false,sifra);
-             cDao.addCustomer(c);
+            cManager.add(c);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Status registracije:");
             alert.setContentText("Uspješno ste registrovani!");
             alert.showAndWait();
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.close();
-
         }
 
 
