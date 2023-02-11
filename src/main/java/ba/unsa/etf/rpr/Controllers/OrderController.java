@@ -62,4 +62,12 @@ public class OrderController {
         TabelaDostupnihAuta.refresh();
 
     }
-}
+    public void selectedCar(MouseEvent mouseEvent) throws CarsException {
+        int i = TabelaDostupnihAuta.getSelectionModel().getSelectedIndex();
+        Marka = MarkaIDCol.getCellData(i).toString();
+        Model = ModelIDCol.getCellData(i).toString();
+        Godiste = Integer.parseInt(GodisteIDCol.getCellData(i).toString());
+        Cijena = Integer.parseInt(CijenaIDCol.getCellData(i).toString());
+        id = carsManager.getID(Marka, Model, Godiste, Cijena, true);
+        System.out.println(Marka + Model + Godiste + Cijena + id);
+    }
