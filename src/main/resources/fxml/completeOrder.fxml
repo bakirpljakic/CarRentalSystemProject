@@ -14,14 +14,14 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
   <columnConstraints>
     <ColumnConstraints />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="10.0" prefWidth="304.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.79998779296875" minWidth="10.0" prefWidth="296.79999999999995" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints />
       <RowConstraints maxHeight="128.59998168945313" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="266.8" minHeight="10.0" prefHeight="266.8" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="266.8" minHeight="10.0" prefHeight="243.99998779296874" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="104.60001220703128" minHeight="10.0" prefHeight="104.60001220703128" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -108,7 +108,7 @@
                   </DatePicker>
                </children>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets left="20.0" top="20.0" />
                </VBox.margin>
             </VBox>
             <VBox prefHeight="82.0" prefWidth="300.0">
@@ -127,8 +127,24 @@
                      </VBox.margin>
                   </DatePicker>
                </children>
+               <VBox.margin>
+                  <Insets left="20.0" top="40.0" />
+               </VBox.margin>
             </VBox>
          </children>
       </VBox>
+      <Label text="UKUPNA CIJENA:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="150.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets right="100.0" />
+         </GridPane.margin>
+      </TextField>
    </children>
 </GridPane>
