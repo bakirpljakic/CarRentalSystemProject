@@ -58,7 +58,7 @@ public class CarsController {
         carsDao.add(c);
         AzurirajTabelu();
     }
-    public void AzurirajTabelu(){
+    public void AzurirajTabelu() throws CarsException {
         IDCol.setCellValueFactory(new PropertyValueFactory<Cars,Integer>("id"));
         MarkaCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Make"));
         ModelCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Model"));
