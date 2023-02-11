@@ -85,12 +85,16 @@ public class CarsDaoSQLImpl extends AbstractDao<Cars> implements CarsDao{
 
 
 
-public class CarsDaoSQLImpl implements CarsDao{
+
+
+
+/*
+
 
     private Connection connection;
 
     public CarsDaoSQLImpl(){
-        try (InputStream input = new FileInputStream(".properties")) {
+        try (InputStream input = new FileInputStream("db.properties")) {
             Properties prop = new Properties();
             prop.load(input);
             String url = prop.getProperty("db.url");
@@ -204,28 +208,16 @@ public class CarsDaoSQLImpl implements CarsDao{
         }
         return cars;
     }
+*/
 
-    @Override
-    public List<Cars> getAllAvailable() {
-        String query = "SELECT * FROM Cars WHERE Available = 1";
-        List<Cars> cars = new ArrayList<Cars>();
-        try{
-            PreparedStatement ps = this.connection.prepareStatement(query);
-            ResultSet myRs = ps.executeQuery();
-            while(myRs.next()){
-                Cars car = new Cars();
-                car.setId(myRs.getInt("id"));
-                car.setMake(myRs.getString("Make"));
-                car.setModel(myRs.getString("Model"));
-                car.setCarYear(myRs.getInt("CarYear"));
-                car.setPrice(myRs.getInt("Price"));
-                car.setAvailable(myRs.getBoolean("Available"));
-                cars.add(car);
-            }
-            myRs.close();
-        }catch (SQLException e){
-            e.printStackTrace();
+  /*  @Override
+    public int getID(String marka, String model, int godiste, int cijena, boolean b) {
+        try {
+            List<Cars> l = executeQuery("SELECT * FROM Cars WHERE Make = ? AND Model = ? AND CarYear=? AND Price=? AND Available=?", new Object[]{marka, model, godiste, cijena, b});
+            if (l.isEmpty()) return 0;
+            return l.get(0).getId();
+        } catch (Exception e) {
+          //  throw new (e.getMessage(), e);
         }
-        return cars;
-    }
+    }*/
 }
