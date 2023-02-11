@@ -54,8 +54,8 @@ public class CarsController {
         }else{
             dostupno = false;
         }
-        c = new Cars(0,marka,model, godina, cijena, dostupno);
-        carsDao.add(c);
+        c = new Cars(ID,marka,model, godina, cijena, dostupno);
+        carsManager.add(c);
         AzurirajTabelu();
     }
     public void AzurirajTabelu() throws CarsException {
@@ -65,7 +65,7 @@ public class CarsController {
         GodisteCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("CarYear"));
         DostupnoCol.setCellValueFactory(new PropertyValueFactory<Cars, Boolean>("Available"));
         CijenaCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("Price"));
-        List<Cars> auta = carsDao.getAll();
+        List<Cars> auta = carsManager.getAll();
         ObservableList<Cars> a = FXCollections.observableArrayList(auta);
         TabelaAuta.setItems(a);
         TabelaAuta.refresh();
