@@ -32,8 +32,7 @@ public class OrdersDaoSQLImpl extends AbstractDao<Orders> implements OrdersDao{
         try {
             Orders order = new Orders();
             order.setId(rs.getInt("OrderID"));
-            order.setRentstart(rs.getDate("RentStartDate"));
-            order.setRentend(rs.getDate("RentEndDate"));
+            order.setSaledate(rs.getDate("SaleDate"));
             order.setTotalprice(rs.getInt("TotalPrice"));
             CarsDao carDao = new CarsDaoSQLImpl();
             order.setCar(carDao.getById(rs.getInt("CarID")));
@@ -50,8 +49,7 @@ public class OrdersDaoSQLImpl extends AbstractDao<Orders> implements OrdersDao{
     public Map<String, Object> object2row(Orders object) {
         Map<String, Object> item = new TreeMap<>();
         item.put("OrderID", object.getId());
-        item.put("RentStartDate", object.getRentstart());
-        item.put("RentEndDate", object.getRentend());
+        item.put("SaleDate", object.getSaledate());
         item.put("TotalPrice", object.getTotalprice());
         item.put("CarID", object.getCar().getId());
         item.put("CustomerID", object.getCustomer().getId());

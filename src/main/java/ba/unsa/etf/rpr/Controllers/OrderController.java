@@ -1,9 +1,9 @@
 package ba.unsa.etf.rpr.Controllers;
 
-import ba.unsa.etf.rpr.dao.CarsDao;
-import ba.unsa.etf.rpr.dao.CarsDaoSQLImpl;
+import ba.unsa.etf.rpr.business.CarsManager;
 import ba.unsa.etf.rpr.domain.Cars;
 import ba.unsa.etf.rpr.domain.Orders;
+import ba.unsa.etf.rpr.exceptions.CarsException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,20 +29,30 @@ public class OrderController {
     public TableColumn CijenaIDCol;
     public TableView<Cars> TabelaDostupnihAuta;
 
+    public static Cars automobil = new Cars();
+    private Integer id;
+    private String Marka = "";
+    private String Model = "";
+    private Integer Godiste;
+    private Integer Cijena;
+
+    private CarsManager carsManager = new CarsManager();
+
     @FXML
     public void initialize() {
         prikaziTabelu();
 
     }
     Stage stage = new Stage();
-    public void IznajmiButton(ActionEvent actionEvent) throws IOException {
+    public void IznajmiButton(ActionEvent actionEvent) throws IOException, CarsException {
+        //automobil = new Cars(id, Marka, Model, Godiste, Cijena, true);
+        automobil = carsManager.getById(id);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/completeOrder.fxml"));
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         CompleteOrderController completeOrderController = fxmlLoader.getController();
-        stage.setTitle("Automobili");
+        stage.setTitle("Iznajmi");
         stage.setScene(scene);
         stage.show();
-
 
     }
     Orders o = new Orders();
@@ -71,3 +82,7 @@ public class OrderController {
         id = carsManager.getID(Marka, Model, Godiste, Cijena, true);
         System.out.println(Marka + Model + Godiste + Cijena + id);
     }
+
+
+}
+

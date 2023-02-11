@@ -6,8 +6,10 @@ import java.util.Objects;
 public class Orders implements Idable {
     private int id;
 
-    private Date rentstart;
-    private Date rentend;
+
+
+    private Date saledate;
+
 
     private int totalprice;
 
@@ -15,6 +17,13 @@ public class Orders implements Idable {
 
     private Customers customer;
 
+    public Date getSaledate() {
+        return saledate;
+    }
+
+    public void setSaledate(Date saledate) {
+        this.saledate = saledate;
+    }
 
     public int getId() {
         return id;
@@ -24,21 +33,7 @@ public class Orders implements Idable {
         this.id = id;
     }
 
-    public java.sql.Date getRentstart() {
-        return (java.sql.Date) rentstart;
-    }
 
-    public void setRentstart(Date rentstart) {
-        this.rentstart = rentstart;
-    }
-
-    public java.sql.Date getRentend() {
-        return (java.sql.Date) rentend;
-    }
-
-    public void setRentend(Date rentend) {
-        this.rentend = rentend;
-    }
 
 
 
@@ -78,15 +73,14 @@ public class Orders implements Idable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, rentstart, rentend, totalprice, car, customer);
+        return Objects.hash(id, saledate, totalprice, car, customer);
     }
 
     @Override
     public String toString() {
         return "Orders{" +
                 "id=" + id +
-                ", rentstart=" + rentstart +
-                ", rentend=" + rentend +
+                ", saledate=" + saledate +
                 ", totalprice=" + totalprice +
                 ", car=" + car +
                 ", customer=" + customer +
