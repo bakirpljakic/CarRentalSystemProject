@@ -45,13 +45,18 @@ public class OrderController {
 
     }
     Orders o = new Orders();
-    CarsDao carsDao = new CarsDaoSQLImpl();
+
     public void prikaziTabelu(){
         MarkaIDCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Make"));
         ModelIDCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Model"));
         GodisteIDCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("CarYear"));
         CijenaIDCol.setCellValueFactory(new PropertyValueFactory<Cars, Integer>("Price"));
-        List<Cars> auta = carsDao.getAllAvailable();
+        List<Cars> auta = null;
+        try {
+            auta = carsManager.getAllAvailable();
+        } catch (CarsException e) {
+            throw new RuntimeException(e);
+        }
         ObservableList<Cars> a = FXCollections.observableArrayList(auta);
         TabelaDostupnihAuta.setItems(a);
         TabelaDostupnihAuta.refresh();
