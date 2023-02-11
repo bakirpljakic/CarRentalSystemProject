@@ -1,13 +1,89 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Cars;
+import ba.unsa.etf.rpr.exceptions.CarsException;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
+
+public class CarsDaoSQLImpl extends AbstractDao<Cars> implements CarsDao{
+    private static CarsDaoSQLImpl instance = null;
+    public CarsDaoSQLImpl() {
+        super("Cars");
+    }
+
+    public static CarsDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new CarsDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
+    }
+
+    @Override
+    public Cars row2object(ResultSet rs) throws CarsException {
+        try {
+            Cars car = new Cars();
+            car.setId(rs.getInt("id"));
+            car.setMake(rs.getString("Make"));
+            car.setModel(rs.getString("Model"));
+            car.setCarYear(rs.getInt("CarYear"));
+            car.setPrice(rs.getInt("Price"));
+            car.setAvailable(rs.getBoolean("Available"));;
+            return car;
+        } catch (SQLException e) {
+            throw new CarsException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Map<String, Object> object2row(Cars object) {
+        Map<String, Object> item = new TreeMap<>();
+        item.put("id", object.getId());
+        item.put("Make", object.getMake());
+        item.put("Model", object.getModel());
+        item.put("CarYear", object.getCarYear());
+        item.put("Price", object.getPrice());
+        item.put("Available", object.isAvailable());
+        return item;
+    }
+
+    @Override
+    public List<Cars> getAllAvailable() {
+        String query = "SELECT * FROM Cars WHERE Available = 1";
+        List<Cars> cars = new ArrayList<Cars>();
+        try{
+            PreparedStatement ps = this.getConnection().prepareStatement(query);
+            ResultSet myRs = ps.executeQuery();
+            while(myRs.next()){
+                Cars car = new Cars();
+                car.setId(myRs.getInt("id"));
+                car.setMake(myRs.getString("Make"));
+                car.setModel(myRs.getString("Model"));
+                car.setCarYear(myRs.getInt("CarYear"));
+                car.setPrice(myRs.getInt("Price"));
+                car.setAvailable(myRs.getBoolean("Available"));
+                cars.add(car);
+            }
+            myRs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return cars;
+    }
+
+
+
+
+
+
+
+
+
+
 
 public class CarsDaoSQLImpl implements CarsDao{
 
