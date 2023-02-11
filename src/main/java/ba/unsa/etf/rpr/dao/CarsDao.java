@@ -10,4 +10,5 @@ public interface CarsDao extends Dao<Cars>{
     List<Cars> getAllAvailable() throws CarsException;
 
     //int getID(String marka, String model, int godiste, int cijena, boolean b);
+    int getID(String model, String marka, Integer godiste,Integer cijena, boolean dostupno) throws CarsException;
 }
