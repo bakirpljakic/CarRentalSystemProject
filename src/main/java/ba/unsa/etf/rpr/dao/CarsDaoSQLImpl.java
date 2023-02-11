@@ -3,8 +3,13 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Cars;
 import ba.unsa.etf.rpr.exceptions.CarsException;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class CarsDaoSQLImpl extends AbstractDao<Cars> implements CarsDao{
     private static CarsDaoSQLImpl instance = null;
@@ -27,7 +32,7 @@ public class CarsDaoSQLImpl extends AbstractDao<Cars> implements CarsDao{
     public Cars row2object(ResultSet rs) throws CarsException {
         try {
             Cars car = new Cars();
-            car.setId(rs.getInt("id"));
+            car.setId(rs.getInt("Cid"));
             car.setMake(rs.getString("Make"));
             car.setModel(rs.getString("Model"));
             car.setCarYear(rs.getInt("CarYear"));
@@ -42,7 +47,7 @@ public class CarsDaoSQLImpl extends AbstractDao<Cars> implements CarsDao{
     @Override
     public Map<String, Object> object2row(Cars object) {
         Map<String, Object> item = new TreeMap<>();
-        item.put("id", object.getId());
+        item.put("Cid", object.getId());
         item.put("Make", object.getMake());
         item.put("Model", object.getModel());
         item.put("CarYear", object.getCarYear());
@@ -60,7 +65,7 @@ public class CarsDaoSQLImpl extends AbstractDao<Cars> implements CarsDao{
             ResultSet myRs = ps.executeQuery();
             while(myRs.next()){
                 Cars car = new Cars();
-                car.setId(myRs.getInt("id"));
+                car.setId(myRs.getInt("Cid"));
                 car.setMake(myRs.getString("Make"));
                 car.setModel(myRs.getString("Model"));
                 car.setCarYear(myRs.getInt("CarYear"));
