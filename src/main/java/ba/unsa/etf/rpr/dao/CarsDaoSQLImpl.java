@@ -75,6 +75,10 @@ public class CarsDaoSQLImpl extends AbstractDao<Cars> implements CarsDao{
         return cars;
     }
 
+    public int getID(String model, String marka, Integer godiste,Integer cijena, boolean dostupno) throws CarsException {
+        Cars c = executeQueryUnique("SELECT * FROM Cars WHERE Make = ? AND Model = ? AND CarYear=? AND Price=? AND Available=?", new Object[]{model, marka, godiste, cijena, dostupno});
+        return c.getId();
+    }
 
 
 
