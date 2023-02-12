@@ -128,7 +128,7 @@
             <Button mnemonicParsing="false" onAction="#save" text="SAČUVAJ" />
             <Button mnemonicParsing="false" onAction="#change" text="IZMJENI" />
             <Button minWidth="65.0" mnemonicParsing="false" onAction="#delete" text="IZBRIŠI" />
-            <Button minWidth="10.0" mnemonicParsing="false" onAction="#reset" prefHeight="26.0" prefWidth="316.0" text="RESET" />
+            <Button minWidth="10.0" mnemonicParsing="false" onAction="#reset" prefHeight="26.0" prefWidth="316.0" text="ISPRAZNI POLJA" />
          </buttons>
          <GridPane.margin>
             <Insets right="20.0" />
@@ -144,7 +144,7 @@
             <TableColumn fx:id="CijenaCol" minWidth="6.199951171875" prefWidth="105.0" text="Cijena" />
          </columns>
       </TableView>
-      <Button cancelButton="true" mnemonicParsing="false" onAction="#nazadButton" prefHeight="17.0" prefWidth="54.0" text="Nazad">
+      <Button cancelButton="true" mnemonicParsing="false" onAction="#nazadButton" prefHeight="26.0" prefWidth="76.0" text="Odjavite se">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>

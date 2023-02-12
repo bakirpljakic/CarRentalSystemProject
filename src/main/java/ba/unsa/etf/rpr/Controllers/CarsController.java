@@ -8,13 +8,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class CarsController {
 
@@ -86,7 +93,7 @@ public class CarsController {
 
     public void selectedCar(javafx.scene.input.MouseEvent mouseEvent) {
         int i = TabelaAuta.getSelectionModel().getSelectedIndex();
-        ID = Integer.valueOf(IDCol.getCellData(i).toString());
+        ID = Integer.parseInt(String.valueOf(IDCol.getCellData(i)));
         MarkaID.setText(MarkaCol.getCellData(i).toString());
         ModelID.setText(ModelCol.getCellData(i).toString());
         GodisteID.setText(GodisteCol.getCellData(i).toString());
@@ -121,5 +128,16 @@ public class CarsController {
         GodisteID.setText(null);
         DostupnoID.setValue(null);
         CijenaID.setText(null);
+    }
+
+    public void nazadButton(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) MarkaID.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        LoginController ordersController = fxmlLoader.getController();
+        stage.setTitle("");
+        stage.setScene(scene);
+        stage.show();
     }
 }
