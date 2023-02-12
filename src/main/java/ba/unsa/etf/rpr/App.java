@@ -61,7 +61,20 @@ public class App {
                 printFormattedOptions(options);
                 System.exit(-1);
             }
-
+        } else if (cl.hasOption(deleteCar.getOpt()) || cl.hasOption(deleteCar.getLongOpt())) {
+            Cars c = new Cars();
+            try{
+            boolean dostupno = false;
+            if (cl.getArgList().get(4).equals("DA")) {
+                dostupno = true;
+            }
+            int a = cmanager.getID(cl.getArgList().get(0), cl.getArgList().get(1), (Integer.parseInt(cl.getArgList().get(2))),
+                    (Integer.parseInt(cl.getArgList().get(3))), dostupno);
+            cmanager.delete(a);
+            System.out.println("Car successfuly deleted from database!");
+            }catch (IndexOutOfBoundsException e){
+                System.out.println("Car with that criteria does not exist.");
+            }
         }
     }
 }
