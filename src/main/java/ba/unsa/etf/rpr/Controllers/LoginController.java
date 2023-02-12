@@ -90,7 +90,8 @@ public class LoginController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/order.fxml"));
                 Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
                 OrderController ordersController = fxmlLoader.getController();
-                stage.setTitle("Iznajmi");
+                stage.getIcons().add(new Image("/img/sale_car.jpg"));
+                stage.setTitle("Kupovina");
                 stage.setScene(scene);
                 stage.show();
 
