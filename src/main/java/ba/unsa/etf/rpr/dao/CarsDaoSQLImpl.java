@@ -11,18 +11,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * The type Cars dao sql.
+ */
 public class CarsDaoSQLImpl extends AbstractDao<Cars> implements CarsDao{
     private static CarsDaoSQLImpl instance = null;
+
+    /**
+     * Instantiates a new Cars dao sql.
+     */
     public CarsDaoSQLImpl() {
         super("Cars");
     }
 
+    /**
+     * Get instance cars dao sql.
+     *
+     * @return the cars dao sql
+     */
     public static CarsDaoSQLImpl getInstance(){
         if(instance==null)
             instance = new CarsDaoSQLImpl();
         return instance;
     }
 
+    /**
+     * Remove instance.
+     */
     public static void removeInstance(){
         if(instance!=null)
             instance=null;
