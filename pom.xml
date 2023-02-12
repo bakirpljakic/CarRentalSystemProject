@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ba.unsa.etf.rpr</groupId>
-  <artifactId>CarRentalSystemProject</artifactId>
+  <artifactId>CarSaleSystemProjectProject</artifactId>
   <version>0.1</version>
 
-  <name>CarRentalSystemProject</name>
+  <name>CarSaleSystemProjectProject</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -106,7 +106,7 @@
           <artifactId>javafx-maven-plugin</artifactId>
           <version>0.0.8</version>
           <configuration>
-            <mainClass>CarRentalSystem/ba.unsa.etf.rpr.App</mainClass>
+            <mainClass>CarSaleSystemProject/ba.unsa.etf.rpr.App</mainClass>
           </configuration>
         </plugin>
 
