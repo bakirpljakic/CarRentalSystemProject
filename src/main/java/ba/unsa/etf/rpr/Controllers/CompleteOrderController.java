@@ -6,13 +6,19 @@ import ba.unsa.etf.rpr.domain.Orders;
 import ba.unsa.etf.rpr.exceptions.CarsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Date;
 
 import static ba.unsa.etf.rpr.Controllers.LoginController.korisnik;
 import static ba.unsa.etf.rpr.Controllers.OrderController.automobil;
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class CompleteOrderController {
 
@@ -27,6 +33,10 @@ public class CompleteOrderController {
 
     @FXML
     public void initialize() {
+        MarkaTextField.setFocusTraversable(false);
+        ModelTextField.setFocusTraversable(false);
+        GodisteTextField.setFocusTraversable(false);
+        DatumID.setFocusTraversable(true);
         MarkaTextField.setEditable(false);
         ModelTextField.setEditable(false);
         GodisteTextField.setEditable(false);
@@ -48,6 +58,14 @@ public class CompleteOrderController {
 
     }
 
-    public void OdjavaButton(ActionEvent actionEvent) {
+    public void OdjavaButton(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ModelTextField.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        LoginController ordersController = fxmlLoader.getController();
+        stage.setTitle("");
+        stage.setScene(scene);
+        stage.show();
     }
 }
