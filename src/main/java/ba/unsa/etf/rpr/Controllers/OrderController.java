@@ -45,7 +45,8 @@ public class OrderController {
     }
     Stage stage = new Stage();
     public void IznajmiButton(ActionEvent actionEvent) throws IOException, CarsException {
-        //automobil = new Cars(id, Marka, Model, Godiste, Cijena, true);
+        Stage stage = (Stage) TabelaDostupnihAuta.getScene().getWindow();
+        stage.close();
         automobil = carsManager.getById(id);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/completeOrder.fxml"));
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
