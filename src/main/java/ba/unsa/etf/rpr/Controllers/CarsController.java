@@ -11,10 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -109,6 +106,15 @@ public class CarsController {
      * @throws CarsException the cars exception
      */
     public void save(ActionEvent actionEvent) throws CarsException {
+        if(selektovan) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Pogresno dugme!");
+            alert.setContentText("Za izmjenu označenog automobila, pritisnite IZMIJENI dugme.");
+
+            alert.showAndWait();
+            return;
+        }
         String marka = MarkaID.getText();
         String model = ModelID.getText();
         int godina = Integer.parseInt(GodisteID.getText());
@@ -161,7 +167,9 @@ public class CarsController {
      *
      * @param mouseEvent the mouse event
      */
+    boolean selektovan = false;
     public void selectedCar(javafx.scene.input.MouseEvent mouseEvent) {
+        selektovan = true;
         int i = TabelaAuta.getSelectionModel().getSelectedIndex();
         ID = Integer.parseInt(String.valueOf(IDCol.getCellData(i)));
         MarkaID.setText(MarkaCol.getCellData(i).toString());
