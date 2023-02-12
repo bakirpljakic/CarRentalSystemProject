@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * The type App fx.
+ */
 public class AppFX extends Application {
-    public static void main(String[] args) {
-        launch();
 
-    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,5 +25,15 @@ public class AppFX extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+    }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+        launch();
+
     }
 }
