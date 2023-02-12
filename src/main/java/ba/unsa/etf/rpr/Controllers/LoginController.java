@@ -21,44 +21,90 @@ import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * The type Login controller.
+ */
 public class LoginController {
+    /**
+     * The constant korisnik.
+     */
     public static Customers korisnik = new Customers();
+    /**
+     * The Korisnickoime id.
+     */
     public TextField KorisnickoimeID;
+    /**
+     * The Lozinka id.
+     */
     public PasswordField LozinkaID;
+    /**
+     * The Upozorenje.
+     */
     public Text upozorenje;
+    /**
+     * The Welcome text.
+     */
     public Label welcomeText;
+    /**
+     * The Car image view.
+     */
     public ImageView car_image_view;
+    /**
+     * The Stage.
+     */
     Stage stage = new Stage();
+    /**
+     * The C.
+     */
     Customers c = new Customers();
 
     //Image myImage = new Image(getClass().getResource("/resources/img/car_sale.jpg"))
     private CustomersManager cmanager = new CustomersManager();
+
+    /**
+     * Instantiates a new Login controller.
+     */
     public LoginController() {
     }
 
+    /**
+     * Initialize.
+     */
     @FXML
     public void initialize() {
     }
 
+    /**
+     * Button click.
+     *
+     * @param actionEvent the action event
+     * @throws IOException the io exception
+     */
     public void buttonClick(javafx.event.ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/registration.fxml"));
-        RegistrationController r = new RegistrationController();
-        fxmlLoader.setController(r);
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        RegistrationController rc = fxmlLoader.getController();
         stage.getIcons().add(new Image("/img/korisnik.jpg"));
         stage.setScene(scene);
         stage.setResizable(false);
-        String css = String.valueOf(this.getClass().getResource("/css/login.css"));
-        scene.getStylesheets().add(css);
+        //String css = String.valueOf(this.getClass().getResource("/css/login.css"));
+        //scene.getStylesheets().add(css);
         stage.show();
         stage.setOnHiding(x -> {
-            List<String> lista = r.login();
+            List<String> lista = rc.login();
             KorisnickoimeID.setText(lista.get(0));
             LozinkaID.setText(lista.get(1));
         });
     }
 
+    /**
+     * Prijava button click.
+     *
+     * @param actionEvent the action event
+     * @throws IOException   the io exception
+     * @throws CarsException the cars exception
+     */
     public void PrijavaButtonClick(ActionEvent actionEvent) throws IOException, CarsException {
         c = cmanager.getLoggedInCustomer(KorisnickoimeID.getText(), LozinkaID.getText());
         if (c == null) {
