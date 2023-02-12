@@ -17,6 +17,18 @@ public class Orders implements Idable {
 
     private Customers customer;
 
+    public Orders(int id, Date saledate, int totalprice, Cars car, Customers customer) {
+        this.id = id;
+        this.saledate = saledate;
+        this.totalprice = totalprice;
+        this.car = car;
+        this.customer = customer;
+    }
+    public Orders(){
+
+    }
+
+
     public Date getSaledate() {
         return saledate;
     }
