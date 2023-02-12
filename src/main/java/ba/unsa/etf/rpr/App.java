@@ -38,7 +38,30 @@ public class App {
         c = cusDao.addCustomer(cus);*/
         launch();
 
+        CommandLine cl = commandLineParser.parse(options, args);
 
+        CarsManager cmanager = new CarsManager();
 
+        if (cl.hasOption(addCar.getOpt()) || cl.hasOption((addCar.getLongOpt()))) {
+            try {
+                Cars c = new Cars();
+                c.setMake(cl.getArgList().get(0));
+                c.setModel(cl.getArgList().get(1));
+                c.setCarYear(Integer.parseInt(cl.getArgList().get(2)));
+                if (cl.getArgList().get(3).equals("DA")) {
+                    c.setAvailable(true);
+                } else {
+                    c.setAvailable(false);
+                }
+                c.setPrice(Integer.parseInt(cl.getArgList().get(4)));
+                cmanager.add(c);
+                System.out.println("Car successfully added to database");
+            } catch (Exception e) {
+                System.out.println("Error. Invalid parametars.");
+                printFormattedOptions(options);
+                System.exit(-1);
+            }
+
+        }
     }
 }
