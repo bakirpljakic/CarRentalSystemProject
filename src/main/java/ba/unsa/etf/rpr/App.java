@@ -19,6 +19,15 @@ public class App {
         helpFormatter.printOptions(printWriter, 150, options, 2, 7);
         printWriter.close();
     }
+    public static Options addOptions() {
+        Options options = new Options();
+        options.addOption(addCar);
+        options.addOption(addCustomer);
+        options.addOption(deleteCar);
+
+        return options;
+    }
+
     public static void main(String[] args) {
       /*  Customers cus = new Customers(0, "hahah", "hahah","hahah","hahah","hahah");
         CustomersDao cusDao = new CustomersDaoSQLImpl();
