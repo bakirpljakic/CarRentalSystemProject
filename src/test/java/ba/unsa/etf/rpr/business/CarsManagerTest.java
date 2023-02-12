@@ -1,10 +1,7 @@
 package ba.unsa.etf.rpr.business;
 
-import ba.unsa.etf.rpr.domain.Cars;
 import ba.unsa.etf.rpr.exceptions.CarsException;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 class CarsManagerTest {
 
