@@ -6,10 +6,20 @@ import java.sql.*;
 import java.util.*;
 
 
+/**
+ * The type Abstract dao.
+ *
+ * @param <T> the type parameter
+ */
 public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     private static Connection connection = null;
     private String tableName;
 
+    /**
+     * Instantiates a new Abstract dao.
+     *
+     * @param tableName the table name
+     */
     public AbstractDao(String tableName) {
         this.tableName = tableName;
         createConnection();
@@ -33,14 +43,41 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         }
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public static Connection getConnection() {
         return AbstractDao.connection;
     }
+
+    /**
+     * Row 2 object t.
+     *
+     * @param rs the rs
+     * @return the t
+     * @throws CarsException the cars exception
+     */
     public abstract T row2object(ResultSet rs) throws CarsException;
 
 
+    /**
+     * Object 2 row map.
+     *
+     * @param object the object
+     * @return the map
+     */
     public abstract Map<String, Object> object2row(T object);
 
+    /**
+     * Execute query list.
+     *
+     * @param query  the query
+     * @param params the params
+     * @return the list
+     * @throws CarsException the cars exception
+     */
     public List<T> executeQuery(String query, Object[] params) throws CarsException{
         try {
             PreparedStatement stmt = getConnection().prepareStatement(query);
@@ -60,7 +97,15 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         }
     }
 
-   public T executeQueryUnique(String query, Object[] params) throws CarsException {
+    /**
+     * Execute query unique t.
+     *
+     * @param query  the query
+     * @param params the params
+     * @return the t
+     * @throws CarsException the cars exception
+     */
+    public T executeQueryUnique(String query, Object[] params) throws CarsException {
        List<T> result = executeQuery(query, params);
        if (result != null && result.size() == 1) {
            return result.get(0);
