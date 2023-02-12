@@ -5,26 +5,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.LoginController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controllers.LoginController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="283.20001220703125" minWidth="10.0" prefWidth="253.59996032714844" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="392.79999999999995" minWidth="10.0" prefWidth="379.2000396728515" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="347.59999694824216" minHeight="10.0" prefHeight="68.60001831054689" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="347.59999694824216" minHeight="10.0" prefHeight="171.9999969482422" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="347.59999694824216" minHeight="10.0" prefHeight="106.2000244140625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="347.59999694824216" minHeight="10.0" prefHeight="196.5999755859375" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="195.60001220703126" minHeight="10.0" prefHeight="93.60000305175782" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <HBox prefHeight="357.0" prefWidth="600.0" GridPane.rowIndex="1">
+      <HBox prefHeight="357.0" prefWidth="600.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <VBox prefHeight="185.0" prefWidth="394.0">
+            <VBox prefHeight="178.0" prefWidth="394.0">
                <children>
                   <Label text="Korisničko ime:">
                      <font>
@@ -54,7 +58,7 @@
                   </PasswordField>
                   <Text fx:id="upozorenje" fill="#ff0202" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="335.9999465942383">
                      <VBox.margin>
-                        <Insets left="30.0" top="15.0" />
+                        <Insets left="10.0" right="8.0" top="15.0" />
                      </VBox.margin>
                      <font>
                         <Font size="14.0" />
@@ -64,23 +68,28 @@
             </VBox>
          </children>
       </HBox>
-      <Label text="Prijavite se">
+      <Label text="Prijavite se" GridPane.columnIndex="1">
          <font>
             <Font size="18.0" />
          </font>
          <GridPane.margin>
-            <Insets left="150.0" />
+            <Insets left="135.0" />
          </GridPane.margin>
       </Label>
-      <Button defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#PrijavaButtonClick" text="Prijava" GridPane.rowIndex="2">
+      <Button defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#PrijavaButtonClick" text="Prijava" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="15.0" left="30.0" right="30.0" top="-15.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#buttonClick" text="Nemate nalog? Registrujte se" GridPane.rowIndex="2">
+      <Button mnemonicParsing="false" onAction="#buttonClick" prefHeight="5.0" prefWidth="173.0" text="Nemate nalog? Registrujte se" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets left="110.0" top="40.0" />
+            <Insets left="95.0" top="40.0" />
          </GridPane.margin>
       </Button>
+      <ImageView fitHeight="185.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+         <image>
+            <Image url="@../img/sale_car.jpg" />
+         </image>
+      </ImageView>
    </children>
 </GridPane>
