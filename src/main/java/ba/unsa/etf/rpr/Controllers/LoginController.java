@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -25,8 +27,11 @@ public class LoginController {
     public PasswordField LozinkaID;
     public Text upozorenje;
     public Label welcomeText;
+    public ImageView car_image_view;
     Stage stage = new Stage();
     Customers c = new Customers();
+
+    //Image myImage = new Image(getClass().getResource("/resources/img/car_sale.jpg"))
     private CustomersManager cmanager = new CustomersManager();
     public LoginController() {
     }
@@ -41,11 +46,11 @@ public class LoginController {
         RegistrationController r = new RegistrationController();
         fxmlLoader.setController(r);
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-
-        //stage.setTitle("");
-        //stage.setFullScreen(true);
+        stage.getIcons().add(new Image("/img/korisnik.jpg"));
         stage.setScene(scene);
         stage.setResizable(false);
+        String css = String.valueOf(this.getClass().getResource("/css/login.css"));
+        scene.getStylesheets().add(css);
         stage.show();
         stage.setOnHiding(x -> {
             List<String> lista = r.login();
