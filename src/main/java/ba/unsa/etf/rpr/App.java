@@ -12,6 +12,9 @@ public class App {
     private static final Option addCustomer = new Option("u","add-customer",false, "Adding new customer to database");
 
     private static final Option deleteCar = new Option("delC", "delete-car", false, "Deleting a car from database");
+
+    private static final Option getCars = new Option("getC", "get-cars", false, "Printing all cars from database");
+
     public static void printFormattedOptions(Options options) {
         HelpFormatter helpFormatter = new HelpFormatter();
         PrintWriter printWriter = new PrintWriter(System.out);
