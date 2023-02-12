@@ -1,19 +1,17 @@
 package ba.unsa.etf.rpr;
 
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
+import ba.unsa.etf.rpr.business.CarsManager;
+import ba.unsa.etf.rpr.domain.Cars;
+import org.apache.commons.cli.*;
 
 import java.io.PrintWriter;
 
 public class App {
 
-    private static final Option addCar = new Option("c","add-car",false, "Adding new car to database");
-    private static final Option addCustomer = new Option("u","add-customer",false, "Adding new customer to database");
-
+    private static final Option addCar = new Option("c", "add-car", false, "Adding new car to database");
     private static final Option deleteCar = new Option("delC", "delete-car", false, "Deleting a car from database");
-
     private static final Option getCars = new Option("getC", "get-cars", false, "Printing all cars from database");
+
 
     public static void printFormattedOptions(Options options) {
         HelpFormatter helpFormatter = new HelpFormatter();
@@ -22,21 +20,19 @@ public class App {
         helpFormatter.printOptions(printWriter, 150, options, 2, 7);
         printWriter.close();
     }
+
     public static Options addOptions() {
         Options options = new Options();
         options.addOption(addCar);
-        options.addOption(addCustomer);
         options.addOption(deleteCar);
-
+        options.addOption(getCars);
         return options;
     }
 
-    public static void main(String[] args) {
-      /*  Customers cus = new Customers(0, "hahah", "hahah","hahah","hahah","hahah");
-        CustomersDao cusDao = new CustomersDaoSQLImpl();
-        Customers c = new Customers();
-        c = cusDao.addCustomer(cus);*/
-        launch();
+    public static void main(String[] args) throws Exception {
+        Options options = addOptions();
+
+        CommandLineParser commandLineParser = new DefaultParser();
 
         CommandLine cl = commandLineParser.parse(options, args);
 
