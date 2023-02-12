@@ -21,17 +21,41 @@ import static ba.unsa.etf.rpr.Controllers.LoginController.korisnik;
 import static ba.unsa.etf.rpr.Controllers.OrderController.automobil;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * The type Complete order controller.
+ */
 public class CompleteOrderController {
 
+    /**
+     * The Marka text field.
+     */
     public TextField MarkaTextField;
+    /**
+     * The Model text field.
+     */
     public TextField ModelTextField;
+    /**
+     * The Godiste text field.
+     */
     public TextField GodisteTextField;
 
+    /**
+     * The Datum id.
+     */
     public DatePicker DatumID;
+    /**
+     * The Cijena text field.
+     */
     public TextField CijenaTextField;
 
+    /**
+     * The Orders manager.
+     */
     OrdersManager ordersManager = new OrdersManager();
 
+    /**
+     * Initialize.
+     */
     @FXML
     public void initialize() {
         MarkaTextField.setFocusTraversable(false);
@@ -48,7 +72,17 @@ public class CompleteOrderController {
         CijenaTextField.setText(String.valueOf(automobil.getPrice()));
     }
 
+    /**
+     * The Cars manager.
+     */
     CarsManager carsManager = new CarsManager();
+
+    /**
+     * Kupi button.
+     *
+     * @param actionEvent the action event
+     * @throws CarsException the cars exception
+     */
     public void KupiButton(ActionEvent actionEvent) throws CarsException {
         if(DatumID.getValue() == null){
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -72,6 +106,12 @@ public class CompleteOrderController {
         stage.close();
     }
 
+    /**
+     * Odjava button.
+     *
+     * @param actionEvent the action event
+     * @throws IOException the io exception
+     */
     public void OdjavaButton(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ModelTextField.getScene().getWindow();
         stage.close();
