@@ -16,35 +16,85 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Registration controller.
+ */
 public class RegistrationController {
+    /**
+     * The Korisnik id.
+     */
     public TextField KorisnikID;
+    /**
+     * The Email id.
+     */
     public TextField EmailID;
+    /**
+     * The Lozinka id.
+     */
     public PasswordField LozinkaID;
+    /**
+     * The Grad id.
+     */
     public TextField GradID;
+    /**
+     * The Adresa id.
+     */
     public TextField AdresaID;
+    /**
+     * The Br vozacke id.
+     */
     public TextField BrVozackeID;
 
+    /**
+     * The Close button.
+     */
     @FXML
     public Button closeButton;
+    /**
+     * The Registration id.
+     */
     public Button registrationID;
+    /**
+     * The C.
+     */
     Customers c = new Customers();
 
+    /**
+     * The Uspjesno.
+     */
     boolean uspjesno = true;
     private CustomersManager cManager = new CustomersManager();
 
+    /**
+     * Instantiates a new Registration controller.
+     */
     public RegistrationController() {
     }
 
+    /**
+     * Initialize.
+     */
     @FXML
     public void initialize() {
     }
 
+    /**
+     * Close button.
+     *
+     * @param actionEvent the action event
+     */
     public void closeButton(ActionEvent actionEvent) {
         uspjesno = false;
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Registration button.
+     *
+     * @param actionEvent the action event
+     * @throws CarsException the cars exception
+     */
     public void registrationButton(ActionEvent actionEvent) throws CarsException {
         if (KorisnikID.getText().isEmpty() || EmailID.getText().isEmpty() || LozinkaID.getText().isEmpty() || GradID.getText().isEmpty() || AdresaID.getText().isEmpty() || BrVozackeID.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -84,6 +134,11 @@ public class RegistrationController {
         }
     }
 
+    /**
+     * Login list.
+     *
+     * @return the list
+     */
     public List<String> login() {
         List<String> lista = new ArrayList<>();
 
