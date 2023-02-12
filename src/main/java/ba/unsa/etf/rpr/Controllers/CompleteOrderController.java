@@ -44,7 +44,7 @@ public class CompleteOrderController {
         int cijena = Integer.parseInt(CijenaTextField.getText());
         o = new Orders(0, date, cijena, automobil, korisnik);
         ordersManager.add(o);
-        carsManager.delete(automobil.getId());
+        automobil.setAvailable(false);
 
     }
 
