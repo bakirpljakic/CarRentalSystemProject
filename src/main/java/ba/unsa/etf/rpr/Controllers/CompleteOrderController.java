@@ -97,13 +97,11 @@ public class CompleteOrderController {
         o = new Orders(0, date, cijena, automobil, korisnik);
         ordersManager.add(o);
         automobil.setAvailable(false);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Uspešna kupovina");
         alert.setHeaderText("Uspješno ste kupili Vaš automobil.");
         alert.setContentText("Hvala na kupovini.");
         alert.showAndWait();
-        Stage stage = (Stage) ModelTextField.getScene().getWindow();
-        stage.close();
     }
 
     /**
