@@ -50,6 +50,13 @@ public class CompleteOrderController {
 
     CarsManager carsManager = new CarsManager();
     public void KupiButton(ActionEvent actionEvent) throws CarsException {
+        if(DatumID.getValue() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText("Unesite datum kupovine!");
+            alert.showAndWait();
+            return;
+        }
         Orders o = new Orders();
         Date date = Date.valueOf(DatumID.getValue());
         int cijena = Integer.parseInt(CijenaTextField.getText());
