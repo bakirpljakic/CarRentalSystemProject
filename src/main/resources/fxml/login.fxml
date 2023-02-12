@@ -52,6 +52,14 @@
                         <Insets left="30.0" right="30.0" top="10.0" />
                      </VBox.margin>
                   </PasswordField>
+                  <Text fx:id="upozorenje" fill="#ff0202" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="335.9999465942383">
+                     <VBox.margin>
+                        <Insets left="30.0" top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
                </children>
             </VBox>
          </children>
