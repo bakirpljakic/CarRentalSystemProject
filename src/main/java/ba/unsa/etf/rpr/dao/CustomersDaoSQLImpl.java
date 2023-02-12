@@ -11,20 +11,34 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * The type Customers dao sql.
+ */
 public class CustomersDaoSQLImpl extends AbstractDao<Customers> implements CustomersDao {
     private static CustomersDaoSQLImpl instance = null;
     private Connection connection;
 
+    /**
+     * Instantiates a new Customers dao sql.
+     */
     public CustomersDaoSQLImpl() {
         super("Customers");
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static CustomersDaoSQLImpl getInstance() {
         if (instance == null)
             instance = new CustomersDaoSQLImpl();
         return instance;
     }
 
+    /**
+     * Remove instance.
+     */
     public static void removeInstance() {
         if (instance != null)
             instance = null;
