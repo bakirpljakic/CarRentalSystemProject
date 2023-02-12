@@ -75,6 +75,9 @@ public class App {
             }catch (IndexOutOfBoundsException e){
                 System.out.println("Car with that criteria does not exist.");
             }
+        } else if (cl.hasOption(getCars.getOpt()) || cl.hasOption(getCars.getLongOpt())) {
+            cmanager.getAll().forEach(c -> System.out.println(c.getMake() +" "+ c.getModel() + " " + c.getCarYear() + " "+
+                    c.getPrice()));
         }
     }
 }
