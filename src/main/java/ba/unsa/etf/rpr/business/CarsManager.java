@@ -17,9 +17,9 @@ public class CarsManager {
         }
     }
 
-    public void delete(int filmId) throws CarsException {
+    public void delete(int id) throws CarsException {
         try {
-            DaoFactory.carsDao().delete(filmId);
+            DaoFactory.carsDao().delete(id);
         } catch (CarsException e) {
             throw new CarsException(e.getMessage(), e);
         }
@@ -33,7 +33,7 @@ public class CarsManager {
         return DaoFactory.carsDao().getAll();
     }
 
-    public List<Cars> getAllAvailable() throws CarsException{
+    public List<Cars> getAllAvailable() throws CarsException {
         return DaoFactory.carsDao().getAllAvailable();
     }
 
@@ -45,7 +45,4 @@ public class CarsManager {
         return DaoFactory.carsDao().getID(marka, model, godiste, cijena, b);
     }
 
-  /*  public Integer getID(String marka, String model, Integer godiste, Integer cijena, boolean b) {
-
-    }*/
 }

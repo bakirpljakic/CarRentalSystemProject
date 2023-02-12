@@ -29,7 +29,7 @@
                 <TableColumn fx:id="CijenaIDCol" minWidth="0.0" prefWidth="148.0" text="Cijena" />
             </columns>
         </TableView>
-        <Label text="Označite automobil koji želite iznajmiti:">
+        <Label text="Označite automobil koji želite kupiti:">
             <font>
                 <Font size="16.0" />
             </font>
@@ -39,7 +39,7 @@
         </Label>
         <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
             <buttons>
-                <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#IznajmiButton" prefHeight="26.0" prefWidth="457.0" text="IZNAJMI" />
+                <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#IznajmiButton" prefHeight="26.0" prefWidth="457.0" text="KUPI" />
             </buttons>
             <GridPane.margin>
                 <Insets />

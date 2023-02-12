@@ -17,7 +17,7 @@ public class CustomersManager {
         return true;
     }
 
-    private Customers getById(int id) throws CarsException{
+    public Customers getById(int id) throws CarsException{
         return DaoFactory.customersDao().getById(id);
     }
 
@@ -46,8 +46,6 @@ public class CustomersManager {
     public Customers getLoggedInCustomer(String username, String password) throws CarsException {
         return DaoFactory.customersDao().getLoggedInCustomer(username, password);
     }
-  /*  public Customers addCustomer(Customers item) {
-        return DaoFactory.customersDao().addCustomer(item);
-    }*/
+
 }
 

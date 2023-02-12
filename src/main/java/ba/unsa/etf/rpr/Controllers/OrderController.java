@@ -51,7 +51,7 @@ public class OrderController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/completeOrder.fxml"));
         Scene scene = new Scene((Parent) fxmlLoader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         CompleteOrderController completeOrderController = fxmlLoader.getController();
-        stage.setTitle("Iznajmi");
+        stage.setTitle("KUPOVINA");
         stage.setScene(scene);
         stage.show();
 

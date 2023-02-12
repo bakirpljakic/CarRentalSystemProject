@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
-public class Customers implements Idable {
+public class Customers extends Cars implements Idable {
     private int id;
     private String fullname;
     private String drivinglicence;
@@ -24,7 +24,6 @@ public class Customers implements Idable {
         this.city= grad;
         this.admin = admin;
         this.password = password;
-
     }
 
     public Customers() {

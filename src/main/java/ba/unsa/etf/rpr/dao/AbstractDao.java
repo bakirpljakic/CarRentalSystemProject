@@ -105,7 +105,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     }
 
     public T getById(int id) throws CarsException {
-        return executeQueryUnique("SELECT * FROM " + this.tableName + " WHERE id = ?", new Object[]{id});
+        return executeQueryUnique("SELECT * FROM " + this.tableName + " WHERE Cid = ?", new Object[]{id});
     }
 
     public List<T> getAll() throws CarsException {
@@ -113,7 +113,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     }
 
     public void delete(int id) throws CarsException{
-        String sql = "DELETE FROM " + tableName + " WHERE id = ?";
+        String sql = "DELETE FROM " + tableName + " WHERE Cid = ?";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, id);
@@ -157,7 +157,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
                 .append(tableName)
                 .append(" SET ")
                 .append(updateColumns)
-                .append(" WHERE id = ?");
+                .append(" WHERE Cid = ?");
 
         try {
             PreparedStatement stmt = getConnection().prepareStatement(builder.toString());
