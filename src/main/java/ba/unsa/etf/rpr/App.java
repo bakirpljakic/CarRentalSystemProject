@@ -6,6 +6,9 @@ import org.apache.commons.cli.*;
 
 import java.io.PrintWriter;
 
+/**
+ * The type App.
+ */
 public class App {
 
     private static final Option addCar = new Option("c", "add-car", false, "Adding new car to database");
@@ -13,6 +16,11 @@ public class App {
     private static final Option getCars = new Option("getC", "get-cars", false, "Printing all cars from database");
 
 
+    /**
+     * Print formatted options.
+     *
+     * @param options the options
+     */
     public static void printFormattedOptions(Options options) {
         HelpFormatter helpFormatter = new HelpFormatter();
         PrintWriter printWriter = new PrintWriter(System.out);
@@ -21,6 +29,11 @@ public class App {
         printWriter.close();
     }
 
+    /**
+     * Add options options.
+     *
+     * @return the options
+     */
     public static Options addOptions() {
         Options options = new Options();
         options.addOption(addCar);
@@ -29,6 +42,12 @@ public class App {
         return options;
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws Exception the exception
+     */
     public static void main(String[] args) throws Exception {
         Options options = addOptions();
 
