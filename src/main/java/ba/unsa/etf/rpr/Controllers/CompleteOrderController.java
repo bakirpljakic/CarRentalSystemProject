@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -55,7 +56,13 @@ public class CompleteOrderController {
         o = new Orders(0, date, cijena, automobil, korisnik);
         ordersManager.add(o);
         automobil.setAvailable(false);
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Uspešna kupovina");
+        alert.setHeaderText("Uspješno ste kupili Vaš automobil.");
+        alert.setContentText("Hvala na kupovini.");
+        alert.showAndWait();
+        Stage stage = (Stage) ModelTextField.getScene().getWindow();
+        stage.close();
     }
 
     public void OdjavaButton(ActionEvent actionEvent) throws IOException {
