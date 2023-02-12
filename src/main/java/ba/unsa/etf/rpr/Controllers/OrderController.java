@@ -22,13 +22,34 @@ import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * The type Order controller.
+ */
 public class OrderController {
+    /**
+     * The Marka id col.
+     */
     public TableColumn MarkaIDCol;
+    /**
+     * The Model id col.
+     */
     public TableColumn ModelIDCol;
+    /**
+     * The Godiste id col.
+     */
     public TableColumn GodisteIDCol;
+    /**
+     * The Cijena id col.
+     */
     public TableColumn CijenaIDCol;
+    /**
+     * The Tabela dostupnih auta.
+     */
     public TableView<Cars> TabelaDostupnihAuta;
 
+    /**
+     * The constant automobil.
+     */
     public static Cars automobil = new Cars();
     private Integer id;
     private String Marka = "";
@@ -38,12 +59,27 @@ public class OrderController {
 
     private CarsManager carsManager = new CarsManager();
 
+    /**
+     * Initialize.
+     */
     @FXML
     public void initialize() {
         prikaziTabelu();
 
     }
+
+    /**
+     * The Stage.
+     */
     Stage stage = new Stage();
+
+    /**
+     * Iznajmi button.
+     *
+     * @param actionEvent the action event
+     * @throws IOException   the io exception
+     * @throws CarsException the cars exception
+     */
     public void IznajmiButton(ActionEvent actionEvent) throws IOException, CarsException {
         Stage stage = (Stage) TabelaDostupnihAuta.getScene().getWindow();
         stage.close();
@@ -56,8 +92,15 @@ public class OrderController {
         stage.show();
 
     }
+
+    /**
+     * The O.
+     */
     Orders o = new Orders();
 
+    /**
+     * Prikazi tabelu.
+     */
     public void prikaziTabelu(){
         MarkaIDCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Make"));
         ModelIDCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Model"));
@@ -74,6 +117,13 @@ public class OrderController {
         TabelaDostupnihAuta.refresh();
 
     }
+
+    /**
+     * Selected car.
+     *
+     * @param mouseEvent the mouse event
+     * @throws CarsException the cars exception
+     */
     public void selectedCar(MouseEvent mouseEvent) throws CarsException {
         int i = TabelaDostupnihAuta.getSelectionModel().getSelectedIndex();
         if( MarkaIDCol.getCellData(i) == null) {
