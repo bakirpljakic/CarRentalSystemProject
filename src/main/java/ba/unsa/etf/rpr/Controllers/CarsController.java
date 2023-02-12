@@ -23,36 +23,91 @@ import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
+/**
+ * The type Cars controller.
+ */
 public class CarsController {
 
 
-
+    /**
+     * The Marka id.
+     */
     public TextField MarkaID;
+    /**
+     * The Model id.
+     */
     public TextField ModelID;
+    /**
+     * The Godiste id.
+     */
     public TextField GodisteID;
+    /**
+     * The Dostupno id.
+     */
     @FXML
     public ChoiceBox<String> DostupnoID;
+    /**
+     * The Cijena id.
+     */
     public TextField CijenaID;
+    /**
+     * The Marka col.
+     */
     public TableColumn MarkaCol;
+    /**
+     * The Model col.
+     */
     public TableColumn ModelCol;
+    /**
+     * The Godiste col.
+     */
     public TableColumn GodisteCol;
+    /**
+     * The Dostupno col.
+     */
     public TableColumn DostupnoCol;
+    /**
+     * The Cijena col.
+     */
     public TableColumn CijenaCol;
+    /**
+     * The Tabela auta.
+     */
     public TableView<Cars> TabelaAuta;
+    /**
+     * The Id col.
+     */
     public TableColumn IDCol;
+    /**
+     * The Id.
+     */
     public int ID;
 
 
+    /**
+     * The C.
+     */
     Cars c = new Cars();
 
     private CarsManager carsManager = new CarsManager();
 
+    /**
+     * Initialize.
+     *
+     * @throws CarsException the cars exception
+     */
     @FXML
     public void initialize() throws CarsException {
         AzurirajTabelu();
 
     }
 
+    /**
+     * Save.
+     *
+     * @param actionEvent the action event
+     * @throws CarsException the cars exception
+     */
     public void save(ActionEvent actionEvent) throws CarsException {
         String marka = MarkaID.getText();
         String model = ModelID.getText();
@@ -69,6 +124,12 @@ public class CarsController {
         carsManager.add(c);
         AzurirajTabelu();
     }
+
+    /**
+     * Azuriraj tabelu.
+     *
+     * @throws CarsException the cars exception
+     */
     public void AzurirajTabelu() throws CarsException {
         IDCol.setCellValueFactory(new PropertyValueFactory<Cars,Integer>("id"));
         MarkaCol.setCellValueFactory(new PropertyValueFactory<Cars, String>("Make"));
@@ -83,14 +144,23 @@ public class CarsController {
     }
 
 
-
+    /**
+     * Delete.
+     *
+     * @param actionEvent the action event
+     * @throws CarsException the cars exception
+     */
     public void delete(ActionEvent actionEvent) throws CarsException {
         carsManager.delete(ID);
         AzurirajTabelu();
     }
 
 
-
+    /**
+     * Selected car.
+     *
+     * @param mouseEvent the mouse event
+     */
     public void selectedCar(javafx.scene.input.MouseEvent mouseEvent) {
         int i = TabelaAuta.getSelectionModel().getSelectedIndex();
         ID = Integer.parseInt(String.valueOf(IDCol.getCellData(i)));
@@ -104,6 +174,13 @@ public class CarsController {
         }
         CijenaID.setText(CijenaCol.getCellData(i). toString());
     }
+
+    /**
+     * Change.
+     *
+     * @param actionEvent the action event
+     * @throws CarsException the cars exception
+     */
     public void change(ActionEvent actionEvent) throws CarsException {
         String marka = MarkaID.getText();
         String model = ModelID.getText();
@@ -122,6 +199,11 @@ public class CarsController {
 
     }
 
+    /**
+     * Reset.
+     *
+     * @param actionEvent the action event
+     */
     public void reset(ActionEvent actionEvent) {
         MarkaID.setText(null);
         ModelID.setText(null);
@@ -130,6 +212,12 @@ public class CarsController {
         CijenaID.setText(null);
     }
 
+    /**
+     * Nazad button.
+     *
+     * @param actionEvent the action event
+     * @throws IOException the io exception
+     */
     public void nazadButton(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) MarkaID.getScene().getWindow();
         stage.close();
