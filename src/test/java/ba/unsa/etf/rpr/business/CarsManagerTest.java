@@ -11,8 +11,16 @@ class CarsManagerTest {
 
     @Test
     void addCarTest() throws CarsException {
-
-
+        Cars c = new Cars();
+        c.setMake("Test");
+        cm.add(c);
+        List<Cars> cars = cm.getAll();
+        boolean dodan = false;
+        for(Cars ca: cars){
+            if(c.equals(ca)) dodan = true;
+        }
+        Assertions.assertTrue(dodan);
+        cm.delete(c.getId());
     }
 
     @Test
