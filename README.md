@@ -1,6 +1,6 @@
-# Car Sale Project System
+# Car Sale System Project
 ## Introduction
-Car Sale Project System is a software application designed to facilitate the buying and selling of cars.
+Car Sale System  Project is a software application designed to facilitate the buying and selling of cars.
 This system provides a user-friendly interface for users to search and view available cars, place an order and make payments.
 ## Features
 - User registration and login
