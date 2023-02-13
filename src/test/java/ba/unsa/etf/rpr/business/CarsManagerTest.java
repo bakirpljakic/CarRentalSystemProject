@@ -51,7 +51,9 @@ class CarsManagerTest {
     }
 
     @Test
-    void getAll() {
+    void getAllTest() throws CarsException {
+        List<Cars> auto = cm.getAll();
+        Assertions.assertEquals("X5", auto.get(3).getModel());
     }
 
     @Test
