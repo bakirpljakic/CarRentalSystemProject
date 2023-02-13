@@ -68,7 +68,15 @@ class CarsManagerTest {
     }
 
     @Test
-    void getById() {
+    void getByIdTest() throws CarsException {
+        Cars c = new Cars();
+        c= new Cars(25,"Seat", "Leon,", 2009, 15000, true);
+        Cars finalC = c;
+        Assertions.assertThrows(CarsException.class, ()->{
+            cm.add(finalC);
+        });
+        //Assertions.assertEquals("Seat", cm.getById(25).getMake());
+
     }
 
     @Test
