@@ -79,7 +79,14 @@ class CarsManagerTest {
 
     }
 
-    @Test
-    void getID() {
-    }
+   /* @Test
+    public void mockitoTest() throws CarsException{
+        Mockito.when(cm.getById(1)).thenReturn(new Cars(10,"mockito", "mockito",   2010, 22000, false));
+        Cars ocekivani = new Cars(10,"mockito", "mockito",2010,22000, false);
+        Cars stvarni = cm.getById(1);
+        Assertions.assertEquals(ocekivani.getId(), stvarni.getId());
+
+    }*/
+
+
 }
