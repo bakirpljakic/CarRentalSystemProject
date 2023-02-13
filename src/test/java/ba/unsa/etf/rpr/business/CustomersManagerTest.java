@@ -23,7 +23,9 @@ class CustomersManagerTest {
     }
 
     @Test
-    void getAll() {
+    void getAllTest() throws CarsException {
+        List<Customers> korisnik = cm.getAll();
+        Assertions.assertEquals("Bakir", korisnik.get(0).getFullname());
     }
 
     @Test
