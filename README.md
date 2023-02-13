@@ -9,3 +9,20 @@ This system provides a user-friendly interface for users to search and view avai
 - Place an order for a car
 - View the order history
 - Admin panel to manage cars 
+## Installation
+1. Clone the repository 
+``` git clone https://github.com/bakirpljakic/CarSaleSystemProject ```
+2. Navigate to the project directory 
+``` cd CarSaleSystemProject ```
+3. Build the project using Maven
+``` mvn clean install ```
+4. Run the project
+``` mvn javafx:run ```   
+
+To run the CLI   
+``` mvn package -P cli-app ```   
+``` java -jar cinema-manager-cli-jar-with-dependencies.jar [option] (parameters) ```   
+
+To run the GUI   
+``` mvn package -P gui-app ```   
+``` java --module-path "PATH-TO-JAVAFX" --add-modules javafx.controls,javafx.fxml -jar cinema-manager-gui-jar-with-dependencies.jar ```
