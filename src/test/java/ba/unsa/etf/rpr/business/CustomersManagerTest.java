@@ -27,6 +27,7 @@ class CustomersManagerTest {
     }
 
     @Test
-    void getLoggedInCustomer() {
+    void getLoggedInCustomerTest() throws CarsException {
+        Assertions.assertEquals(null, cm.getLoggedInCustomer("ne-postoji", "ne-postoji"));
     }
 }
