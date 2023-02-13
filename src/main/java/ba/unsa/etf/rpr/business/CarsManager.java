@@ -7,13 +7,16 @@ import ba.unsa.etf.rpr.exceptions.CarsException;
 import java.util.List;
 
 /**
- * The type Cars manager.
+ * This is a Java class called "CarsManager" that provides a set of methods for managing Cars objects.
+ * The class uses the DaoFactory to access the Cars DAO (Data Access Object) and perform CRUD (Create, Read, Update, Delete) operations on Cars objects.
+ * It also throws a CarsException in case of an error.
+ * @author Bakir Pljakic
  */
 public class CarsManager {
 
     /**
      * Add cars.
-     *
+     *Adds Cars object to table Cars.
      * @param f the f
      * @return the cars
      * @throws CarsException the cars exception
@@ -29,7 +32,7 @@ public class CarsManager {
 
     /**
      * Delete.
-     *
+     *Deletes cars, from db table Cars, with a given id.
      * @param id the id
      * @throws CarsException the cars exception
      */
@@ -42,7 +45,7 @@ public class CarsManager {
     }
 
     /**
-     * Update cars.
+     * Updates cars in db table Cars.
      *
      * @param cars the cars
      * @return the cars
@@ -53,7 +56,8 @@ public class CarsManager {
     }
 
     /**
-     * Gets all.
+
+     * Fetches all Cars objects from table Cars and stores it in a list.
      *
      * @return the all
      * @throws CarsException the cars exception
@@ -63,7 +67,7 @@ public class CarsManager {
     }
 
     /**
-     * Gets all available.
+     * Fetches all availbale Cars objects from table Cars and stores it in a list.
      *
      * @return the all available
      * @throws CarsException the cars exception
@@ -74,7 +78,8 @@ public class CarsManager {
 
     /**
      * Gets by id.
-     *
+
+     * Fetches Cars object form table Cars defined by given id.
      * @param id the id
      * @return the by id
      * @throws CarsException the cars exception
@@ -85,7 +90,6 @@ public class CarsManager {
 
     /**
      * Gets id.
-     *
      * @param marka   the marka
      * @param model   the model
      * @param godiste the godiste
