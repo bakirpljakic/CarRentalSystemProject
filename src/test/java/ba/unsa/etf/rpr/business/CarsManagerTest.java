@@ -85,5 +85,12 @@ class CarsManagerTest {
         Assertions.assertEquals(false, mockM.getById(0).isAvailable());
     }
 
+    @Test
+    public  void mockitoTestMake() throws  CarsException{
+        CarsManager mockM = Mockito.mock(CarsManager.class);
+        Mockito.when(mockM.getById(0)).thenReturn(new Cars(10,"mockito", "mockito",   2010, 22000, false));
+        Assertions.assertEquals("mockito", mockM.getById(0).getMake());
+    }
+
 
 }
