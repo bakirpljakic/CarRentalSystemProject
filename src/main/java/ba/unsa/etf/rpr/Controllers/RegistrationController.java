@@ -56,6 +56,7 @@ public class RegistrationController {
      */
     public Button registrationID;
     public Text invalidUsername;
+    public Text invalidPassword;
     /**
      * The C.
      */
@@ -65,6 +66,10 @@ public class RegistrationController {
      * The Uspjesno.
      */
     boolean uspjesno = true;
+    /**
+     * Initialize.
+     */
+    boolean moze = true;
     private CustomersManager cManager = new CustomersManager();
 
     /**
@@ -73,18 +78,26 @@ public class RegistrationController {
     public RegistrationController() {
     }
 
-    /**
-     * Initialize.
-     */
     @FXML
     public void initialize() {
-        KorisnikID.textProperty().addListener((obs, oldValue, newValue)->{
-            if(newValue.length()>=6)
+        KorisnikID.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue.length() >= 6) {
                 invalidUsername.setText("");
-            else if(newValue.length()<6)
+                moze = true;
+            } else if (newValue.length() < 6) {
+                moze = false;
                 invalidUsername.setText("Korisničko ime mora imati barem 6 karaktera.");
+            }
         });
-
+        LozinkaID.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue.length() >= 6) {
+                moze = true;
+                invalidPassword.setText("");
+            } else if (newValue.length() < 6) {
+                moze = false;
+                invalidPassword.setText("Lozinka mora imati barem 6 karaktera.");
+            }
+        });
     }
 
     /**
@@ -105,7 +118,13 @@ public class RegistrationController {
      * @throws CarsException the cars exception
      */
     public void registrationButton(ActionEvent actionEvent) throws CarsException {
-        if (KorisnikID.getText().isEmpty() || EmailID.getText().isEmpty() || LozinkaID.getText().isEmpty() || GradID.getText().isEmpty() || AdresaID.getText().isEmpty() || BrVozackeID.getText().isEmpty()) {
+        if(!moze){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Status registracije:");
+            alert.setContentText("Korisničko ime ili šifra neispravno uneseni.");
+            alert.showAndWait();
+        }
+        else if (KorisnikID.getText().isEmpty() || EmailID.getText().isEmpty() || LozinkaID.getText().isEmpty() || GradID.getText().isEmpty() || AdresaID.getText().isEmpty() || BrVozackeID.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Status registracije:");
             alert.setContentText("Popunite sva polja kako biste se uspješno registrovali!");
@@ -141,6 +160,7 @@ public class RegistrationController {
                 stage.close();
             }
         }
+
     }
 
     /**
