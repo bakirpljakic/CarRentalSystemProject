@@ -7,7 +7,10 @@ import ba.unsa.etf.rpr.exceptions.CarsException;
 import java.util.List;
 
 /**
- * The type Customers manager.
+ * This is a Java class called "CustomersManager" that provides a set of methods for managing Customers objects.
+ * The class uses the DaoFactory to access the Customers DAO (Data Access Object) and perform CRUD (Create, Read, Update, Delete) operations on Customers objects.
+ * It also throws a CarsException in case of an error.
+ * @author Bakir Pljakic
  */
 public class CustomersManager {
     private boolean customerExists(int id) throws CarsException {
@@ -33,7 +36,7 @@ public class CustomersManager {
 
     /**
      * Add customers.
-     *
+     * Adds Customers object to table Customers.
      * @param c the c
      * @return the customers
      * @throws CarsException the cars exception
@@ -49,7 +52,7 @@ public class CustomersManager {
 
     /**
      * Delete.
-     *
+     * Deletes customers, from db table Customers, with a given id.
      * @param cusId the cus id
      * @throws CarsException the cars exception
      */

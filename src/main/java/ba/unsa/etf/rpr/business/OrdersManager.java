@@ -7,13 +7,16 @@ import ba.unsa.etf.rpr.exceptions.CarsException;
 import java.util.List;
 
 /**
- * The type Orders manager.
+ * This is a Java class called "OrdersManager" that provides a set of methods for managing Orders objects.
+ * The class uses the DaoFactory to access the Orders DAO (Data Access Object) and perform CRUD (Create, Read, Update, Delete) operations on Orders objects.
+ * It also throws a CarsException in case of an error.
+ * @author Bakir Pljakic
  */
 public class OrdersManager {
 
     /**
      * Add orders.
-     *
+     * Add Orders object to table Orders.
      * @param o the o
      * @return the orders
      * @throws CarsException the cars exception
@@ -28,7 +31,7 @@ public class OrdersManager {
 
     /**
      * Delete.
-     *
+     * Delete orders, from db table Orders, with a given id.
      * @param orderId the order id
      * @throws CarsException the cars exception
      */
