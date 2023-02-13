@@ -20,6 +20,9 @@ This system provides a user-friendly interface for users to search and view avai
 ``` mvn javafx:run ```   
 
 To run the CLI   
-
 ``` mvn package -P cli-app ```   
-``` java -jar cinema-manager-cli-jar-with-dependencies.jar [option] (parameters) ```
+``` java -jar cinema-manager-cli-jar-with-dependencies.jar [option] (parameters) ```   
+
+To run the GUI   
+``` mvn package -P gui-app ```   
+``` java --module-path "PATH-TO-JAVAFX" --add-modules javafx.controls,javafx.fxml -jar cinema-manager-gui-jar-with-dependencies.jar ```
