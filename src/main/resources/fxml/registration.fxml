@@ -112,9 +112,10 @@
                         <Insets right="20.0" top="20.0" />
                      </VBox.margin>
                   </PasswordField>
+                  <Text fx:id="invalidPassword" fill="#ff0101" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="374.936767578125" />
                   <TextField fx:id="GradID">
                      <VBox.margin>
-                        <Insets right="20.0" top="20.0" />
+                        <Insets right="20.0" top="4.0" />
                      </VBox.margin>
                   </TextField>
                   <TextField fx:id="AdresaID">
