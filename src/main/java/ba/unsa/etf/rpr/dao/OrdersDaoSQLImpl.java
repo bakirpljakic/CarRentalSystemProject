@@ -8,34 +8,20 @@ import java.sql.ResultSet;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * The type Orders dao sql.
- */
 public class OrdersDaoSQLImpl extends AbstractDao<Orders> implements OrdersDao{
     private Connection connection;
     private static OrdersDaoSQLImpl instance = null;
 
-    /**
-     * Instantiates a new Orders dao sql.
-     */
     public OrdersDaoSQLImpl() {
         super("Orders");
     }
 
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
     public static OrdersDaoSQLImpl getInstance() {
         if (instance == null)
             instance = new OrdersDaoSQLImpl();
         return instance;
     }
 
-    /**
-     * Remove instance.
-     */
     public static void removeInstance() {
         if (instance != null)
             instance = null;

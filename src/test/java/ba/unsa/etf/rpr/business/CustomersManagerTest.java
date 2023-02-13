@@ -1,18 +1,16 @@
 package ba.unsa.etf.rpr.business;
 
+import ba.unsa.etf.rpr.domain.Customers;
+import ba.unsa.etf.rpr.exceptions.CarsException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 class CustomersManagerTest {
+    CustomersManager cm = new CustomersManager();
 
-    @Test
-    void getById() {
-    }
 
-    @Test
-    void add() {
-    }
 
     @Test
     void delete() {

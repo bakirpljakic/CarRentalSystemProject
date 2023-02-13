@@ -75,8 +75,6 @@ class CarsManagerTest {
         Assertions.assertThrows(CarsException.class, ()->{
             cm.add(finalC);
         });
-        //Assertions.assertEquals("Seat", cm.getById(25).getMake());
-
     }
 
    /* @Test
