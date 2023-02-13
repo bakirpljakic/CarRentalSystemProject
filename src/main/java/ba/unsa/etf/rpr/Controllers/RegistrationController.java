@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class RegistrationController {
      * The Registration id.
      */
     public Button registrationID;
+    public Text invalidUsername;
     /**
      * The C.
      */
@@ -76,6 +78,13 @@ public class RegistrationController {
      */
     @FXML
     public void initialize() {
+        KorisnikID.textProperty().addListener((obs, oldValue, newValue)->{
+            if(newValue.length()>=6)
+                invalidUsername.setText("");
+            else if(newValue.length()<6)
+                invalidUsername.setText("Korisničko ime mora imati barem 6 karaktera.");
+        });
+
     }
 
     /**
