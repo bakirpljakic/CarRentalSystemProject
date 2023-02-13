@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.Cars;
 import ba.unsa.etf.rpr.exceptions.CarsException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -77,14 +78,12 @@ class CarsManagerTest {
         });
     }
 
-   /* @Test
-    public void mockitoTest() throws CarsException{
-        Mockito.when(cm.getById(1)).thenReturn(new Cars(10,"mockito", "mockito",   2010, 22000, false));
-        Cars ocekivani = new Cars(10,"mockito", "mockito",2010,22000, false);
-        Cars stvarni = cm.getById(1);
-        Assertions.assertEquals(ocekivani.getId(), stvarni.getId());
-
-    }*/
+    @Test
+    public void mockitoTestAvailabe() throws CarsException{
+        CarsManager mockM = Mockito.mock(CarsManager.class);
+        Mockito.when(mockM.getById(0)).thenReturn(new Cars(10,"mockito", "mockito",   2010, 22000, false));
+        Assertions.assertEquals(false, mockM.getById(0).isAvailable());
+    }
 
 
 }
