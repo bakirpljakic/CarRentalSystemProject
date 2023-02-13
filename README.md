@@ -17,4 +17,9 @@ This system provides a user-friendly interface for users to search and view avai
 3. Build the project using Maven
 ``` mvn clean install ```
 4. Run the project
-``` mvn javafx:run ```
+``` mvn javafx:run ```   
+
+To run the CLI   
+
+``` mvn package -P cli-app ```   
+``` java -jar cinema-manager-cli-jar-with-dependencies.jar [option] (parameters) ```
