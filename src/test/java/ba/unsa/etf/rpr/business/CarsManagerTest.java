@@ -57,7 +57,14 @@ class CarsManagerTest {
     }
 
     @Test
-    void getAllAvailable() {
+    void getAllAvailableTest() throws CarsException {
+        Cars c = new Cars();
+        List<Cars> cars = cm.getAllAvailable();
+        boolean dostupan = true;
+        for (Cars ca :cars) {
+            if (!ca.isAvailable()) dostupan = false;
+        }
+        Assertions.assertTrue(dostupan);
     }
 
     @Test
