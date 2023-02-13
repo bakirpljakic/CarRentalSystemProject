@@ -24,7 +24,17 @@ class CarsManagerTest {
     }
 
     @Test
-    void delete() {
+    void deleteCarTest() throws CarsException {
+        Cars c = new Cars();
+        c.setMake("Test");
+        cm.add(c);
+        cm.delete(c.getId());
+        List<Cars> cars = cm.getAll();
+        boolean obrisan = true;
+        for (Cars ca :cars) {
+            if (c.equals(ca)) obrisan = false;
+        }
+        Assertions.assertTrue(obrisan);
     }
 
     @Test
