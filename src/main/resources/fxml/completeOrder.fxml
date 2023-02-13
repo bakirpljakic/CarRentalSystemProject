@@ -94,7 +94,7 @@
          <children>
             <VBox prefHeight="82.0" prefWidth="300.0">
                <children>
-                  <Label text="Datum kupovine:">
+                  <Label text="Datum preuzimanja:">
                      <font>
                         <Font size="15.0" />
                      </font>
