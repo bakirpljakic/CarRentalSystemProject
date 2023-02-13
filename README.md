@@ -9,3 +9,6 @@ This system provides a user-friendly interface for users to search and view avai
 - Place an order for a car
 - View the order history
 - Admin panel to manage cars 
+## Installation
+1. Clone the repository 
+``` git clone https://github.com/bakirpljakic/CarSaleSystemProject ```
